@@ -76,7 +76,7 @@ MVPリリースまでに
 Docker,Ruby on Rails 7系,bootstrapもしくはTailwind CSS,Fly.io,PostgreSQL
 gem:
 - rails-i18n:多言語化
-- devise: ユーザー認証
+- divise: ユーザー認証
 - simple_form:フォーム作成
 - CarrierWave・MiniMagick: 画像加工など
 - acts_as_taggable_on: タグ付け機能
