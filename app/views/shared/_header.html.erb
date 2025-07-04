@@ -30,7 +30,8 @@
             <div class='dropdown-item'>アカウント名</div>
             <div class='dropdown-divider'></div>
             <%= link_to 'マイページ', '#', class: 'dropdown-item' %>
-            <%= link_to 'ログアウト', '#', class: 'dropdown-item' %>
+            <%#<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' %>
+            <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: "dropdown-item btn btn-link" %>
           </div>
         </li>
       </ul>

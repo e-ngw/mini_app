@@ -1,6 +1,9 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%# html: { data: { turbo: false } }はTurboによるJS fetchを回避のため記述。
+Turboはフォームをfetch（JavaScriptのfetch()）で送信する。Devise や Rails UJS はこの動作を前提としていないため
+fetchに渡されるオプションが不正（例えば map.get is not a function）になり、JSでエラー → サーバにリクエストすら届かなくなるらしい。%>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
