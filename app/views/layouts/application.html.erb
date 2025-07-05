@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <%# deviseのログイン成功など実装の際追加のフラッシュメッセージ %>
+    <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+      <%= message %>
+    </div>
+    <% end %>
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
