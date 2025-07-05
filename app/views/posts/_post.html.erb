@@ -29,7 +29,7 @@
           </div>
         </div>
         <ul class="list-inline">
-          <li><i class="bi bi-person"></i><%= post.user %></li>
+          <li><i class="bi bi-person"></i><%= post.user.name %></li>
           <li><i class="bi bi-calendar"></i><%= l post.created_at, format: :short %></li>
         </ul>
         <p class="card-text">本文</p>
