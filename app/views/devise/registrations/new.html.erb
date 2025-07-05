@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2><%= t('.sign_up') %></h2>
 
 <%# html: { data: { turbo: false } }はTurboによるJS fetchを回避のため記述。
 Turboはフォームをfetch（JavaScriptのfetch()）で送信する。Devise や Rails UJS はこの動作を前提としていないため
@@ -14,7 +14,7 @@ fetchに渡されるオプションが不正（例えば map.get is not a functi
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -25,7 +25,7 @@ fetchに渡されるオプションが不正（例えば map.get is not a functi
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('.sign_up') %>
   </div>
 <% end %>
 
