@@ -11,7 +11,7 @@
     <div class='collapse navbar-collapse' id='navbarSupportedContent'>
       <ul class='navbar-nav ms-auto main-nav align-items-center'>
         <li class='nav-item dropdown dropdown-slide'>
-          <%= link_to 'POST作成', '#', class: 'nav-link dropdown-toggle', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-board-menu' %>
+          <%= link_to t('header.create_post'), '#', class: 'nav-link dropdown-toggle', data: { bs_toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, id: 'header-board-menu' %>
           <div class='dropdown-menu dropdown-menu-end'>
             <%= link_to '（仮）', '#', class: 'dropdown-item' %>
             <%= link_to '（仮）', '#', class: 'dropdown-item' %>
@@ -19,7 +19,7 @@
         </li>
 
         <li class='nav-item'>
-          <%= link_to 'TOP PAGE(一覧)', '#', class: 'nav-link' %>
+          <%= link_to t('header.post_index'), '#', class: 'nav-link' %>
         </li>
 
         <li class='nav-item dropdown dropdown-slide'>
@@ -27,11 +27,11 @@
             <%= image_tag 'sample.jpg', class: 'rounded-circle mr15', width: '40', height: '40' %>
           <% end %>
           <div class='dropdown-menu dropdown-menu-end'>
-            <div class='dropdown-item'>アカウント名</div>
+            <div class='dropdown-item'>アカウント名入る</div>
             <div class='dropdown-divider'></div>
-            <%= link_to 'マイページ', '#', class: 'dropdown-item' %>
+            <%= link_to t('header.mypage'), '#', class: 'dropdown-item' %>
             <%#<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' %>
-            <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: "dropdown-item btn btn-link" %>
+            <%= button_to t('header.logout'), destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: "dropdown-item btn btn-link" %>
           </div>
         </li>
       </ul>

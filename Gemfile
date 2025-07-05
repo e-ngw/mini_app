@@ -38,6 +38,9 @@ gem "bootsnap", require: false
 
 # gem追加分
 gem "devise"
+gem "devise-i18n"
+gem "devise-i18n-views"
+gem "rails-i18n", "~> 7.0.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
