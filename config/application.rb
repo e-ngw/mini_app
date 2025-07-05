@@ -23,6 +23,7 @@ module Myapp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.i18n.default_locale = :ja # 追加
+    config.i18n.default_locale = :ja # 追加-i18n
+    config.time_zone = 'Tokyo' # 追加-デフォルトのタイムゾーンを日本時間に設定するための記述
   end
 end
