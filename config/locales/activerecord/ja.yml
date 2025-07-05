@@ -6,7 +6,6 @@ ja:
     attributes:
       user:
         email: メールアドレス
-        last_name: 姓
-        first_name: 名
         password: パスワード
         password_confirmation: パスワード確認
+        name: "アカウント名（マイページで変更可能）"
