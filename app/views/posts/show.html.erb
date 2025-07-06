@@ -1,13 +1,59 @@
-<%# 未対応 %>
-<!--
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <p class="fw-bold"><%= @post.user.name %></p>
 
-<%= render @post %>
+      <% if @post.image.present? %>
+        <div class="mb-3">
+          <%= image_tag @post.image.url, class: "img-fluid rounded" %>
+        </div>
+      <% end %>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+      <!-- アイコン＆編集削除ボタン -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex gap-3">
+          <i class="bi bi-star fs-4"></i>
+          <i class="bi bi-bookmark fs-4"></i>
+        </div>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+        <% if current_user == @post.user %>
+          <div class="d-flex gap-3">
+            <%= link_to "#", class: "text-decoration-none text-dark" do %>
+              <i class="bi bi-pencil-fill fs-5"></i>
+            <% end %>
+            <%= link_to "#", method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-decoration-none text-dark" do %>
+              <i class="bi bi-trash-fill fs-5"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 本文など -->
+      <p><%= simple_format(@post.body) %></p>
+      <p class="text-muted">Updated <%= time_ago_in_words(@post.updated_at) %> ago</p>
+
+      <% if @post.restaurant_info.present? %>
+        <p><%= @post.restaurant_info %></p>
+      <% end %>
+
+      <% if @post.food_info.present? %>
+        <p><strong><%= @post.food_info %></strong></p>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <%# コメント機能（後で実装予定） %>
+      <div class="border rounded p-3">
+        <h5>コメント一覧</h5>
+        <ul class="list-unstyled">
+          <%#<% @post.comments.each do |comment| %>
+            <%#<li class="mb-2">
+              <strong><%= comment.user.name %><%#</strong>
+              <span><%= comment.body %><%#</span>
+            </li>
+          <% end %>
+        <</ul>
+      </div>
+    </div>
+  </div>
 </div>
--->
