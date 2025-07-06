@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  validates :image, presence: { message: "：画像の選択は必須です" }
   validates :body, length: { maximum: 65_535 }
   validates :restaurant_info, length: { maximum: 255 }
   validates :food_info, length: { maximum: 255 }
