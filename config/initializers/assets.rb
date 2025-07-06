@@ -11,3 +11,8 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w[ admin.js admin.css ]
+
+# プリコンパイルの対象に明示的に画像を加えるため
+# config.assets.precompile に明示的に追加したファイルは必ずプリコンパイルの対象になる
+Rails.application.config.assets.precompile += %w( post_placeholder.png )
+
