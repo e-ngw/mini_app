@@ -1,0 +1,7 @@
+<%# deviseのログイン成功など実装の際追加のフラッシュメッセージ。
+そのため今後は、notice=緑、それ以外=赤　となる。そしてキーがnoticeなら緑背景、それ以外のキー(errorやalertなどなんでも)だと赤背景になる %>
+<% flash.each do |key, message| %>
+<div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+  <%= message %>
+</div>
+<% end %>

@@ -24,7 +24,7 @@ class PostsController < ApplicationController
       redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human)
     else
       flash.now[:error] = t("defaults.flash_message.not_created", item: Post.model_name.human)
-      render :new, status: unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
     #   format.html { redirect_to @post, notice: "Post was successfully created." }
     #   format.json { render :show, status: :created, location: @post }
