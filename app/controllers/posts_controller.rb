@@ -21,9 +21,9 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to posts_path, success: t('defaults.flash_message.created', item: Post.model_name.human)
+      redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human)
     else
-      flash.now[:danger] = t('defaults.flash_message.not_created', item: Post.model_name.human)
+      flash.now[:error] = t("defaults.flash_message.not_created", item: Post.model_name.human)
       render :new, status: unprocessable_entity
     end
     #   format.html { redirect_to @post, notice: "Post was successfully created." }
@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   #       @post = Post.find(params[:id])
   #     end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:body, :restaurant_info, :food_info)
   end
