@@ -18,7 +18,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # ファイルがアップロードされていない場合にデフォルトで表示する画像のURLを指定
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    'post_placeholder'
+    "post_placeholder"
   end
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -31,7 +31,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # 画像自体をサーバー側で加工・リサイズして保存する処理。処理が行われるタイミングは、画像をアップロードしたとき。
   # 画像の容量も小さくなる。一度だけ変換され、以降はその変換後の画像が使われる。
   # resize_to_fit は指定サイズに収まる最大サイズでアスペクト比（縦横比）を維持したまま縮小する
-  process resize_to_fit: [300, 200] #[width, height]
+  process resize_to_fit: [ 300, 200 ] # [width, height]
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -49,7 +49,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:
