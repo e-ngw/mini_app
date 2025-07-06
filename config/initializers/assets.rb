@@ -14,5 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 
 # プリコンパイルの対象に明示的に画像を加えるため
 # config.assets.precompile に明示的に追加したファイルは必ずプリコンパイルの対象になる
-Rails.application.config.assets.precompile += %w( post_placeholder.png )
-
+Rails.application.config.assets.precompile += %w[ post_placeholder.png ]
