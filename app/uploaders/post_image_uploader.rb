@@ -18,7 +18,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # ファイルがアップロードされていない場合にデフォルトで表示する画像のURLを指定
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "post_placeholder"
+    "post_placeholder.png"
   end
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
