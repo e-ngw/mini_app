@@ -1,19 +1,25 @@
 class PostImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
+  # 画像の保存場所の設定。ローカルストレージの場合は:file、クラウドストレージの場合は:fogにする
   storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  # 画像を保存するディレクトリを定義。
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  # ファイルがアップロードされていない場合にデフォルトで表示する画像のURLを指定
   # Provide a default URL as a default if there hasn't been a file uploaded:
+  def default_url
+    'post_placeholder'
+  end
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
@@ -21,6 +27,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  # MiniMagickのおかげで様々なサイズやアスペクト比を設定することができる
+  process resize_to_fit: [300, 200] #[width, height]
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -28,16 +36,18 @@ class PostImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  # 画像を表示箇所によってサイズを変えたい場合があるときはここ
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]
   # end
 
+  # 許容する拡張子の設定
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_allowlist
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_allowlist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

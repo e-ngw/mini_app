@@ -13,6 +13,9 @@ class Post < ApplicationRecord
 
   validate :body_cannot_include_forbidden_words
 
+  # imageカラムにUploaderをマウントする
+  mount_uploader :image, PostImageUploader
+
   private
 
   def body_cannot_include_forbidden_words
