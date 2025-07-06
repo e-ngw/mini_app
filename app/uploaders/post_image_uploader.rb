@@ -28,6 +28,9 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # end
 
   # MiniMagickのおかげで様々なサイズやアスペクト比を設定することができる
+  # 画像自体をサーバー側で加工・リサイズして保存する処理。処理が行われるタイミングは、画像をアップロードしたとき。
+  # 画像の容量も小さくなる。一度だけ変換され、以降はその変換後の画像が使われる。
+  # resize_to_fit は指定サイズに収まる最大サイズでアスペクト比（縦横比）を維持したまま縮小する
   process resize_to_fit: [300, 200] #[width, height]
   # Process files as they are uploaded:
   # process scale: [200, 300]

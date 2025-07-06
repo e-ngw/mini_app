@@ -3,7 +3,12 @@
     <div class="col-lg-8 offset-lg-2">
       <h1><%= t('.title') %></h1>
       <%= form_with model: @post, local: true, data: { turbo: false }, class: "new_post" do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-3">
+          <%= f.label :image %>
+          <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+          <%= f.hidden_field :image_cache %>
+        </div>
         <div class="mb-3">
           <%= f.label :body %>
           <%= f.text_area :body, class: "form-control", rows: "5" %>
