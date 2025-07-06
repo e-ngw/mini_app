@@ -1,4 +1,32 @@
-<%# 未対応 %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1><%= t('.title') %></h1>
+      <%= form_with model: @post, class: "new_board" do |f| %>
+      <%# title行は後で削除 %>
+        <div class="mb-3">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :body %>
+          <%= f.text_area :body, class: "form-control", rows: "5" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :restaurant_info %>
+          <%= f.text_field :restaurant_info, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :food_info %>
+          <%= f.text_field :food_info, class: "form-control" %>
+        </div>
+        <%# ここのnilは新規や更新などアクションに適した文字を生成してくれる %>
+        <%= f.submit nil, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <!--
 <% content_for :title, "New post" %>
 
