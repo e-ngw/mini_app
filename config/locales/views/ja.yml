@@ -1,5 +1,10 @@
 # ビューに関する日本語化
 ja:
+  defaults:
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
+      require_login: ログインしてください
   helpers:
     submit:
       create: 登録
@@ -18,6 +23,9 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+  posts:
+    new:
+      title: ポスト作成
   header:
     login: ログイン
     logout: ログアウト
