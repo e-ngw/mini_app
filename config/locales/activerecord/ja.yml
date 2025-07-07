@@ -14,4 +14,6 @@ ja:
         image: サムネイル
         body: 本文
         restaurant_info: 店舗情報
-        food_info: メニュー名・製品名
+        food_info: メニュー/商品名
+      tag:
+        tag: タグ

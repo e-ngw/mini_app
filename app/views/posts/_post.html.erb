@@ -15,7 +15,8 @@
     <div class="card">
     <%# post_image_urlはULされた画像のURLを取得できるCarrierWave提供の機能 %>
       <%= link_to post_path(post) do %>
-        <%= image_tag post.image_url, class: "card-img-top", width: "300", height: "200" %>
+        <%#<%= image_tag post.image_url, class: "card-img-top", width: "300", height: "200" %>
+        <%= image_tag post.image.url(:thumb), class: "img-fluid post-thumb" %>
       <% end %>
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center mb-2">

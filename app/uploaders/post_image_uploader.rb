@@ -31,7 +31,10 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # 画像自体をサーバー側で加工・リサイズして保存する処理。処理が行われるタイミングは、画像をアップロードしたとき。
   # 画像の容量も小さくなる。一度だけ変換され、以降はその変換後の画像が使われる。
   # resize_to_fit は指定サイズに収まる最大サイズでアスペクト比（縦横比）を維持したまま縮小する
-  process resize_to_fit: [ 300, 200 ] # [width, height]
+  # resize_to_fill は、中央をトリミングしながらサイズをピッタリ合わせる処理
+  version :thumb do
+    process resize_to_fill: [ 250, 250 ]
+  end
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
