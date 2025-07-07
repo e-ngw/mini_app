@@ -1,13 +1,57 @@
-<%# 未対応 %>
-<!--
-<p style="color: green"><%= notice %></p>
+<div class="container my-4">
+  <!-- 上段：投稿詳細 -->
+  <div class="row">
+    <!-- 左側：画像とアイコン -->
+    <div class="col-md-5 mb-4">
+      <%# 投稿画像 %>
+      <%= image_tag @post.image.url, class: "img-fluid rounded w-100" if @post.image? %>
 
-<%= render @post %>
+      <div class="d-flex justify-content-between mt-2">
+        <div>
+          <%# いいねアイコン %>
+          <i class="bi bi-star me-2"></i>
+          <%# ブックマークアイコン %>
+          <i class="bi bi-bookmark"></i>
+        </div>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+        <% if @post.user == current_user %>
+          <div>
+            <%# 編集アイコン %>
+            <%= link_to "#", class: "text-decoration-none me-3" do %>
+              <i class="bi bi-pencil"></i>
+            <% end %>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+            <%# 削除アイコン %>
+            <%= link_to "#", method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-decoration-none" do %>
+              <i class="bi bi-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- 右側：投稿内容 -->
+    <div class="col-md-7">
+      <p><strong>本文:</strong><br><%= simple_format(@post.body) %></p>
+      <p><strong>店舗情報:</strong><br><%= @post.restaurant_info %></p>
+      <p><strong>フード情報:</strong><br><%= @post.food_info %></p>
+      <p><strong>タグ:</strong><br>#タグ名 など</p>
+      <p class="text-muted">投稿日: <%= l(@post.created_at, format: :long) %></p>
+    </div>
+  </div>
+
+  <!-- 下段：コメント -->
+  <div class="row mt-5">
+    <div class="col">
+      <h5>コメント一覧</h5>
+      <ul class="list-unstyled">
+        <%#<% @post.comments.each do |comment| %>
+          <%#<li class="mb-2 border-bottom pb-2">
+            <strong><%= comment.user.name %><%#:</strong>
+            <%= comment.body %>
+          <%#</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
--->

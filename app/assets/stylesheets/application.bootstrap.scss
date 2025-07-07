@@ -1,2 +1,14 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'top';
+
+body {
+  background-color: lightyellow;
+}
+
+.post-thumb {
+  width: 100%;         // Bootstrapのcol幅に合わせて横幅可変
+  aspect-ratio: 1 / 1; // 正方形にする（Safariなどで有効）
+  object-fit: cover;   // トリミングして正方形に見せる
+  border-radius: 0.5rem;
+}

@@ -14,20 +14,26 @@
   <div id="post-id-<%= post.id %>">
     <div class="card">
     <%# post_image_urlはULされた画像のURLを取得できるCarrierWave提供の機能 %>
-      <%= image_tag post.image_url, class: "card-img-top" , width: "300", height:"200"%>
+      <%= link_to post_path(post) do %>
+        <%#<%= image_tag post.image_url, class: "card-img-top", width: "300", height: "200" %>
+        <%= image_tag post.image.url(:thumb), class: "img-fluid post-thumb" %>
+      <% end %>
       <div class="card-body">
-        <div class="d-flex">
-          <%#<h4 class="card-title">
-            <%= link_to post.title, '#' %>
-          </h4>
-          <div class='ms-auto'>
-            <%= link_to '#', id: 'button-edit-#{post.id}' do %>
-              <i class="bi bi-pencil-fill"></i>
-            <% end %>
-            <%= link_to '#', id: 'button-delete-#{post.id}', method: :delete, data: {confirm: ''} do %>
-              <i class="bi bi-trash-fill"></i>
-            <% end %>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex gap-2">
+            <i class="bi bi-star"></i>
+            <i class="bi bi-bookmark"></i>
           </div>
+          <% if current_user == post.user %>
+            <div class="d-flex gap-2">
+              <%= link_to "#", class: "text-dark" do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
+              <%= link_to "#", method: :delete, data: { confirm: "削除してもよろしいですか？" }, class: "text-dark" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            </div>
+          <% end %>
         </div>
         <ul class="list-inline">
           <li><i class="bi bi-person"></i><%= post.user.name %></li>

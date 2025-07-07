@@ -5,10 +5,6 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user)
   end
 
-  #   # GET /posts/1 or /posts/1.json
-  #   def show
-  #   end
-
   def new
     @post = Post.new
   end
@@ -33,6 +29,10 @@ class PostsController < ApplicationController
     #   format.json { render json: @post.errors, status: :unprocessable_entity }
     # end
     # end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   #   # PATCH/PUT /posts/1 or /posts/1.json
