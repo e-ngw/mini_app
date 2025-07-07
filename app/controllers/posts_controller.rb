@@ -4,18 +4,18 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user)
   end
-  
+
   def new
     @post = Post.new
   end
-  
+
   #   # GET /posts/1/edit
   #   def edit
   #   end
-  
+
   def create
     @post = current_user.posts.build(post_params)
-    
+
     if @post.save
       redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human)
     else
@@ -30,11 +30,11 @@ class PostsController < ApplicationController
     # end
     # end
   end
-  
+
   def show
     @post = Post.find(params[:id])
   end
-  
+
   #   # PATCH/PUT /posts/1 or /posts/1.json
   #   def update
   #     respond_to do |format|
