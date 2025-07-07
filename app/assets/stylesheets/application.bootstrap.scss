@@ -1,2 +1,13 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'top';
+
+.test-box {
+  background-color: purple;
+  color: white;
+  padding: 1rem;
+}
+
+body {
+  background-color: lightyellow;
+}
