@@ -1,4 +1,26 @@
-<%# 未対応 %>
+<%= form_with model: post, local: true, data: { turbo: false }, class: "new_post" do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-3">
+          <%= f.label :image %>
+          <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :body %>
+          <%= f.text_area :body, class: "form-control", rows: "5" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :restaurant_info %>
+          <%= f.text_field :restaurant_info, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :food_info %>
+          <%= f.text_field :food_info, class: "form-control" %>
+        </div>
+        <%# ここのnilは新規や更新などアクションに適した文字を生成してくれる %>
+        <%= f.submit nil, class: "btn btn-primary" %>
+      <% end %>
+
 <!--
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>

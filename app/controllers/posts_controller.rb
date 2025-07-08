@@ -9,10 +9,6 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  #   # GET /posts/1/edit
-  #   def edit
-  #   end
-
   def create
     @post = current_user.posts.build(post_params)
 
@@ -22,31 +18,25 @@ class PostsController < ApplicationController
       flash.now[:error] = t("defaults.flash_message.not_created", item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
-    #   format.html { redirect_to @post, notice: "Post was successfully created." }
-    #   format.json { render :show, status: :created, location: @post }
-    # else
-    #   format.html { render :new, status: :unprocessable_entity }
-    #   format.json { render json: @post.errors, status: :unprocessable_entity }
-    # end
-    # end
   end
 
   def show
     @post = Post.find(params[:id])
   end
 
-  #   # PATCH/PUT /posts/1 or /posts/1.json
-  #   def update
-  #     respond_to do |format|
-  #       if @post.update(post_params)
-  #         format.html { redirect_to @post, notice: "Post was successfully updated." }
-  #         format.json { render :show, status: :ok, location: @post }
-  #       else
-  #         format.html { render :edit, status: :unprocessable_entity }
-  #         format.json { render json: @post.errors, status: :unprocessable_entity }
-  #       end
-  #     end
-  #   end
+  def edit
+    @post = current_user.posts.find(params[:id])
+  end
+
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: t('defaults.flash_message.updated', item: Board.model_name.human)
+    else
+      flash.now[:error] = t('defaults.flash_message.not_updated', item: Board.model_name.human)
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   #   # DELETE /posts/1 or /posts/1.json
   #   def destroy
@@ -59,12 +49,7 @@ class PostsController < ApplicationController
   #   end
 
   private
-  #     # Use callbacks to share common setup or constraints between actions.
-  #     def set_post
-  #       @post = Post.find(params[:id])
-  #     end
 
-  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:image, :image_cache, :body, :restaurant_info, :food_info)
   end
