@@ -1,9 +1,13 @@
 # ビューに関する日本語化
 ja:
   defaults:
+    delete_confirm: 削除しますか？
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新出来ませんでした"
+      deleted: "%{item}を削除しました"
       require_login: ログインしてください
   helpers:
     submit:
@@ -26,6 +30,8 @@ ja:
   posts:
     new:
       title: ポスト作成
+    edit:
+      title: 編集
   header:
     login: ログイン
     logout: ログアウト

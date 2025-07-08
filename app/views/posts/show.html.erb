@@ -14,16 +14,16 @@
           <i class="bi bi-bookmark"></i>
         </div>
 
-        <% if @post.user == current_user %>
+        <% if current_user.own?(@post) %>
           <div>
             <%# 編集アイコン %>
-            <%= link_to "#", class: "text-decoration-none me-3" do %>
-              <i class="bi bi-pencil"></i>
+            <%= link_to edit_post_path(@post), class: "text-decoration-none me-3" do %>
+              <i class="bi bi-pencil-fill"></i>
             <% end %>
 
             <%# 削除アイコン %>
-            <%= link_to "#", method: :delete, data: { confirm: "本当に削除しますか？" }, class: "text-decoration-none" do %>
-              <i class="bi bi-trash"></i>
+            <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-decoration-none" do %>
+              <i class="bi bi-trash-fill"></i>
             <% end %>
           </div>
         <% end %>
