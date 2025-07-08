@@ -17,7 +17,7 @@
               <%= link_to edit_post_path(post), class: "text-dark" do %>
                 <i class="bi bi-pencil-fill"></i>
               <% end %>
-              <%= link_to post_path(post), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-dark" do %>
+              <%= link_to post_path(post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-dark" do %>
                 <i class="bi bi-trash-fill"></i>
               <% end %>
             </div>

@@ -22,7 +22,7 @@
             <% end %>
 
             <%# 削除アイコン %>
-            <%= link_to post_path(@post), method: :delete, data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-decoration-none" do %>
+            <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-decoration-none" do %>
               <i class="bi bi-trash-fill"></i>
             <% end %>
           </div>
