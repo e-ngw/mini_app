@@ -41,7 +41,7 @@ gem "devise"
 gem "devise-i18n"
 gem "devise-i18n-views"
 gem "rails-i18n", "~> 7.0.0"
-gem 'carrierwave', '~> 2.2'
+gem "carrierwave", "~> 2.2"
 gem "mini_magick", "~> 4.13"
 gem "fog-aws", "~> 3.24"
 # fog-aws の内部で aws-sdk-s3 を使用してS3に接続しているが、最近のバージョンでは aws-sdk-s3 を別途インストールが必要なことがある。
