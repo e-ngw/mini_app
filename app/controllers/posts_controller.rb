@@ -31,9 +31,9 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: t('defaults.flash_message.updated', item: Post.model_name.human)
+      redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human)
     else
-      flash.now[:error] = t('defaults.flash_message.not_updated', item: Post.model_name.human)
+      flash.now[:error] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
       render :edit, status: :unprocessable_entity
       # status: :unprocessable_entity はHTTPステータスコード 422のこと。
       # フォームバリデーションで失敗したときなどに使われる。入力エラーをユーザーに返すときに適切
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy!
-    redirect_to posts_path, notice: t('defaults.flash_message.deleted', item: Post.model_name.human), status: :see_other
+    redirect_to posts_path, notice: t("defaults.flash_message.deleted", item: Post.model_name.human), status: :see_other
     # status: :see_other はHTTPステータスコード303のこと。
     # リダイレクト時に使われる。POSTのあとのGETリクエストに変換して、他のページへ遷移させたいときに便利
   end
