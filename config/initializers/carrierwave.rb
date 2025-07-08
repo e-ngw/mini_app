@@ -24,6 +24,9 @@ CarrierWave.configure do |config|
     config.storage :fog
     # config.fog_provider = "fog/aws"
     config.fog_directory  = "mini-app-image-bucket1" # あなたのバケット名
+    # 以下の fog_attributes を削除または空にすることで ACL を送らないようにする
+    config.fog_attributes = {}  # 👈 これが重要！
+    # config.fog_public     = true  # これは問題ない（画像URLを公開にするだけ）
     config.fog_credentials = {
       provider: "AWS",
       aws_access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
