@@ -12,6 +12,11 @@ class PostImageUploader < CarrierWave::Uploader::Base
   end
   # storage :fog
 
+  # これを追加！
+  def fog_public
+    false
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   # 画像を保存するディレクトリを定義。
