@@ -5,7 +5,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # 画像の保存場所の設定。ローカルストレージの場合は:file、クラウドストレージの場合は:fogにする
-  storage :file
+  storage Rails.env.production? ? :fog : :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
