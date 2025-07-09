@@ -41,6 +41,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # 画像の容量も小さくなる。一度だけ変換され、以降はその変換後の画像が使われる。
   # resize_to_fit は指定サイズに収まる最大サイズでアスペクト比（縦横比）を維持したまま縮小する
   # resize_to_fill は、中央をトリミングしながらサイズをピッタリ合わせる処理
+  process resize_to_limit: [ 1280, 1280 ]
+
   version :thumb do
     process resize_to_fill: [ 250, 250 ]
   end
