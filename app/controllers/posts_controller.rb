@@ -11,10 +11,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    tag_list = params[:post][:tag_names].split(",") #フォームから送られたタグを,で区切った単語で配列を作っている
+    tag_list = params[:post][:tag_names].split(",") # フォームから送られたタグを,で区切った単語で配列を作っている
 
     if @post.save
-      @post.save_tags(tag_list)
+      @post.save_tags(tag_list) # 上記で定義したtag_list
       redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human)
     else
       @tag_list = params[:post][:tag_names]
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def update
     @post = current_user.posts.find(params[:id])
-    tag_list = params[:post][:tag_names].split(",") #入力されたタグを受け取る
+    tag_list = params[:post][:tag_names].split(",") # 入力されたタグを受け取る
     if @post.update(post_params)
       @post.save_tags(tag_list)
       redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human)

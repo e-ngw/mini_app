@@ -10,8 +10,8 @@ class Post < ApplicationRecord
 
   attr_accessor :tag_names
 
-  def save_tags(input_tags)
-    #現在postにタグ付けされているか？＞ある場合は配列として取得、ない場合は空の配列[]を生成
+  def save_tags(input_tags) # input_tags はpostコントローラーのtag_listの中身が入る
+    # 現在postにタグ付けされているか？＞ある場合は配列として取得、ない場合は空の配列[]を生成
     return unless input_tags
 
     current_tags = self.tags.pluck(:name)
@@ -20,12 +20,12 @@ class Post < ApplicationRecord
     # 送信されてきたタグから現在存在するタグを除いたタグをnew_tagとする
     new_tags = input_tags - current_tags
 
-    #不要なタグをpostから削除
+    # 不要なタグをpostから削除
     old_tags.each do |old_tag|
       self.tags.delete(Tag.find_by(name: old_tag))
     end
 
-    #新しいタグをpostへ追加
+    # 新しいタグをpostへ追加
     new_tags.each do |new_tags|
       add_tag = Tag.find_or_create_by(name: new_tags)
       self.tags << add_tag
