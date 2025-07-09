@@ -17,6 +17,10 @@
           <%= f.label :food_info %>
           <%= f.text_field :food_info, class: "form-control" %>
         </div>
+        <div class="mb-3">
+          <%= f.label :tag_names, "タグ"%>
+          <%= f.text_field :tag_names, value: @tag_list, class: "form-control", placeholder: ",で区切って入力してください" %>
+        </div>
         <%# ここのnilは新規や更新などアクションに適した文字を生成してくれる %>
         <%= f.submit nil, class: "btn btn-primary" %>
       <% end %>

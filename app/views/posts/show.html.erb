@@ -35,7 +35,11 @@
       <p><strong>本文:</strong><br><%= simple_format(@post.body) %></p>
       <p><strong>店舗情報:</strong><br><%= @post.restaurant_info %></p>
       <p><strong>フード情報:</strong><br><%= @post.food_info %></p>
-      <p><strong>タグ:</strong><br>#タグ名 など</p>
+      <p><strong>タグ:</strong>
+      <% @post.tags.each do |tag| %>
+        <span class="badge bg-secondary"><%= tag.name %></span>
+      <% end %>
+      </p>
       <p class="text-muted">投稿日: <%= l(@post.created_at, format: :long) %></p>
     </div>
   </div>

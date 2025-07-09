@@ -28,6 +28,12 @@
           <li><i class="bi bi-calendar"></i><%= l post.created_at, format: :short %></li>
         </ul>
         <p class="card-text"><%= post.body %></p>
+        </p>
+        <% if post.tags.any? %>
+          <% post.tags.each do |tag| %>
+            <span class="badge bg-secondary"><%= tag.name %></span>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

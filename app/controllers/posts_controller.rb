@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(:tags, :user).order(created_at: :desc)
   end
 
   def new
@@ -11,10 +11,13 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    tag_list = params[:post][:tag_names].split(",") #フォームから送られたタグを,で区切った単語で配列を作っている
 
     if @post.save
+      @post.save_tags(tag_list)
       redirect_to posts_path, notice: t("defaults.flash_message.created", item: Post.model_name.human)
     else
+      @tag_list = params[:post][:tag_names]
       flash.now[:error] = t("defaults.flash_message.not_created", item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
