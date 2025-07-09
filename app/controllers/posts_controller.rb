@@ -29,13 +29,17 @@ class PostsController < ApplicationController
 
   def edit
     @post = current_user.posts.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
     @post = current_user.posts.find(params[:id])
+    tag_list = params[:post][:tag_names].split(",") #入力されたタグを受け取る
     if @post.update(post_params)
+      @post.save_tags(tag_list)
       redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human)
     else
+      @tag_list = params[:post][:tag_names]
       flash.now[:error] = t("defaults.flash_message.not_updated", item: Post.model_name.human)
       render :edit, status: :unprocessable_entity
       # status: :unprocessable_entity はHTTPステータスコード 422のこと。
