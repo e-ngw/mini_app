@@ -47,6 +47,7 @@ gem "fog-aws", "~> 3.24"
 # fog-aws の内部で aws-sdk-s3 を使用してS3に接続しているが、最近のバージョンでは aws-sdk-s3 を別途インストールが必要なことがある。
 # RenderではGemの依存関係が正しく解決されない場合があるため、明示的に追加したほうが確実
 gem "aws-sdk-s3", "~> 1.145", require: false
+gem "ransack", "3.2.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
