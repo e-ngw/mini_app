@@ -31,9 +31,9 @@
             <%= image_tag 'sample.jpg', class: 'rounded-circle mr15', width: '40', height: '40' %>
           <% end %>
           <div class='dropdown-menu dropdown-menu-end'>
-            <div class='dropdown-item'>アカウント名入る</div>
+            <div class="px-3 py-2 text-muted"><%= current_user.name %></div>
             <div class='dropdown-divider'></div>
-            <%= link_to t('header.mypage'), '#', class: 'dropdown-item' %>
+            <%= link_to t('header.mypage'), mypage_path, class: 'dropdown-item' %>
             <%#<%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' %>
             <%= button_to t('header.logout'), destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: "dropdown-item btn btn-link" %>
           </div>
