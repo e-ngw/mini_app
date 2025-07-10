@@ -1,0 +1,9 @@
+<%= search_form_for q, url: url, method: :get, class: "row g-2 mb-4" do |f| %>
+  <div class="col-md-6">
+    <%= f.label :tags_name_cont, "タグ名で検索", class: "form-label" %>
+    <%= f.search_field :tags_name_cont, class: "form-control", placeholder: "例: 中華" %>
+  </div>
+  <div class="col-auto align-self-end">
+    <%= f.submit "検索", class: "btn btn-outline-primary" %>
+  </div>
+<% end %>

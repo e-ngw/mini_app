@@ -3,4 +3,8 @@ class Tag < ApplicationRecord
   has_many :posts, through: :taggings
 
   validates :name, uniqueness: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "name" ]
+  end
 end

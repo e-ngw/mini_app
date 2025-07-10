@@ -10,6 +10,20 @@ class Post < ApplicationRecord
 
   attr_accessor :tag_names
 
+  ### タグ検索関連
+  # Postモデルのカラムで検索許可するもの
+  # 関連モデル（Tag）への検索でも、親（Post）側の設定として ransackable_attributes の定義が必須みたい
+  # (内部的にPostの id カラムなども参照されるため）
+  def self.ransackable_attributes(auth_object = nil)
+    [ "id" ]
+  end
+
+  # タグ名（関連モデル）の検索も必要な場合、以下にモデル追加し、その追加したモデルファイルへもransackable_attributesで許容するカラム指定する
+  def self.ransackable_associations(auth_object = nil)
+    [ "tags" ]
+  end
+
+  ### tag処理
   def save_tags(input_tags) # input_tags はpostコントローラーのtag_listの中身が入る
     # 現在postにタグ付けされているか？＞ある場合は配列として取得、ない場合は空の配列[]を生成
     return unless input_tags
@@ -32,6 +46,7 @@ class Post < ApplicationRecord
     end
   end
 
+  ### 投稿のbodyバリデーション
   FORBIDDEN_WORDS = %w[
   まずい まずっ 不味 マズい マズイ まずすぎる 美味しくない おいしくない 食えない 食べられない もう食べたくない
   最悪 ひどい 酷すぎ 失敗 不快 だめ 期待外れ 残念 がっかり ひどすぎ

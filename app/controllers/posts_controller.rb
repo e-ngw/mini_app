@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   # before_action :set_post, only: %i[ show edit update destroy ]
 
   def index
-    @posts = Post.includes(:tags, :user).order(created_at: :desc)
+    # @posts = Post.includes(:tags, :user).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:tags, :user).order(created_at: :desc)
   end
 
   def new
