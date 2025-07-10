@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users # deviseを使用するURLに「users」を含むということ
+  get "/mypage", to: "users#show", as: "mypage" # resources :users, only: [:show]と同じルーティング
   resources :posts, only: %i[ index new create show edit update destroy ]
   root "static_pages#top"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
