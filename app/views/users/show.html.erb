@@ -1,7 +1,7 @@
 <div class="container py-4">
 
   <!-- ユーザープロフィールと検索 -->
-  <div class="row mb-4 g-3 align-items-start">
+  <div class="row mb-4 g-3 align-items-stretch">
     <!-- 自己紹介（約60% = col-md-7） -->
     <div class="col-md-7">
       <div class="d-flex justify-content-between flex-wrap">
@@ -27,21 +27,22 @@
     </div>
 
     <!-- 検索フォーム（約40% = col-md-5） -->
-    <div class="col-md-5">
-      <%#<div class="d-flex justify-content-end mt-5">%>
-      <div class="d-flex justify-content-end" style="margin-top: 64px;">
+    <div class="col-md-5 d-flex justify-content-end align-items-end">
+      <div class="w-100 col-sm-12 col-md-6 col-lg-4">
         <%= render partial: 'posts/search_form', locals: { q: @q, url: mypage_path } %>
       </div>
     </div>
   </div>
 
   <!-- 投稿一覧（フィード） -->
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
-    <% if @posts.present? %>
+  <% if @posts.present? %>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
       <%= render @posts, partial: "posts/post_mypage", as: :post %>
     <% else %>
-      <div class="col">
-        <p>投稿はまだありません。</p>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>投稿はまだありません。</p>
+        </div>
       </div>
     <% end %>
   </div>
