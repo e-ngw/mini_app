@@ -207,7 +207,9 @@ GEM
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0708)
-    mini_magick (4.13.2)
+    mini_magick (5.2.0)
+      benchmark
+      logger
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
@@ -415,7 +417,7 @@ DEPENDENCIES
   fog-aws (~> 3.24)
   jbuilder
   jsbundling-rails
-  mini_magick (~> 4.13)
+  mini_magick (~> 5.2)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
