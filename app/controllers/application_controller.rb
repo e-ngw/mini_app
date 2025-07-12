@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
 
   # devise利用の機能(ユーザー登録やログイン認証等)を使う前に、configure_permitted_parametersメソッドが実行
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+
+  # 新規登録後の遷移先指定(deviseのデフォはroot_pathのため)
+  def after_sign_up_path_for(resource)
+    posts_path
+  end
+
+  # ログイン後の遷移先指定(deviseのデフォはroot_pathのため)
+  def after_sign_in_path_for(resource)
+    posts_path
+  end
+
   # 未ログインでログイン必須ページへアクセスしたときログインページへリダイレクトされる（deviseのヘルパーメソッド）
   before_action :authenticate_user!
 
