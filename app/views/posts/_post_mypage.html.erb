@@ -24,9 +24,20 @@
         </div>
 
         <ul class="list-inline">
-          <li><i class="bi bi-calendar"></i><%= l post.created_at, format: :short %></li>
+          <li class="text-muted small">
+            <%= time_ago_in_words(post.created_at) %>前
+            <% if post.created_at != post.updated_at %>
+              (<%= time_ago_in_words(post.updated_at) %>前 更新)
+            <% end %>
+          </li>
         </ul>
-        <p class="card-text"><%= post.body %></p>
+        <p class="card-text small">
+          <%# 60字超えたら省略 %>
+          <%= truncate(post.body, length: 60, omission: "...") %>
+          <% if post.body.length > 60 %>
+            <%= link_to "続きを読む", post_path(post), class: "ms-2 text-decoration-none" %>
+          <% end %>
+        </p>
 
         <% if post.tags.any? %>
           <% post.tags.each do |tag| %>

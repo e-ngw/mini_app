@@ -30,10 +30,10 @@
       </div>
       <ul class="list-inline">
         <li><i class="bi bi-person"></i>  <%= link_to @post.user.name, user_path(@post.user) %></li>
-        <li class="text-muted">
-          投稿日: <%= time_ago_in_words(@post.created_at) %>前
+        <li class="text-muted small">
+          <%= time_ago_in_words(@post.created_at) %>前
           <% if @post.created_at != @post.updated_at %>
-            （<%= time_ago_in_words(@post.updated_at) %>前 更新）
+            (<%= time_ago_in_words(@post.updated_at) %>前 更新)
           <% end %>
         </li>
         <li>
