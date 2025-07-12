@@ -8,8 +8,8 @@
         <div>
           <h2 class="fw-bold d-inline me-2"><%= @user.name %></h2>
           <!-- プロフィール編集アイコン -->
-          <%= link_to '#', class: 'text-muted', title: 'プロフィール編集' do %>
-            <i class="bi bi-pencil-square"></i>
+          <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
+            <i class="bi bi-pencil-fill"></i>
           <% end %>
         </div>
       </div>
@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-control bg-light border-0 rounded p-3" readonly style="min-height: 80px;">
-        <%#<%= @user.profile.presence || '自己紹介文はまだありません。' %> 自己紹介文はまだありません。
+        <%= @user.introduction.presence || '自己紹介文はまだありません。' %>
       </div>
     </div>
 

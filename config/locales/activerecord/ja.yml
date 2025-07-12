@@ -4,12 +4,13 @@ ja:
     models:
       user: ユーザー
       post: ポスト
-    attributes:
+    attributes: # errorメッセージのカラム
       user:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
         name: "アカウント名（マイページで変更可能）"
+        introduction: 自己紹介
       post:
         image: サムネイル
         body: 本文
