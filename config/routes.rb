@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   ### 他人のプロフィールページ用
   resources :users, only: [ :show ]
+  resource :follows, only: %i[ create destroy ]
 
   resources :posts, only: %i[ index new create show edit update destroy ]
   root "static_pages#top"
