@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users # deviseを使用するURLに「users」を含むということ
+
+  ### マイページ用
   get "/mypage", to: "users#show", as: "mypage" # resources :users, only: [:show]と同じルーティング
   get "/mypage/edit", to: "users#edit", as: :edit_mypage
   patch "/mypage", to: "users#update"
+
+  ### 他人のプロフィールページ用
+  resources :users, only: [:show]
 
   resources :posts, only: %i[ index new create show edit update destroy ]
   root "static_pages#top"

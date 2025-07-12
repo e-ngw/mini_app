@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def show
-    @user = current_user
+    if params[:id].present?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+
     @q = @user.posts.ransack(params[:q])
     @posts = @q.result(distinct: true).includes(:tags).order(created_at: :desc)
   end

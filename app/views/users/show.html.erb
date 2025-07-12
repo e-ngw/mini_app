@@ -8,8 +8,10 @@
         <div>
           <h2 class="fw-bold d-inline me-2"><%= @user.name %></h2>
           <!-- プロフィール編集アイコン -->
-          <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
-            <i class="bi bi-pencil-fill"></i>
+          <% if @user == current_user %>
+            <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
+              <i class="bi bi-pencil-fill"></i>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -37,13 +39,12 @@
   <!-- 投稿一覧（フィード） -->
   <% if @posts.present? %>
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
-      <%= render @posts, partial: "posts/post_mypage", as: :post %>
-    <% else %>
-      <div class="row">
-        <div class="col-12 text-center">
-          <p>投稿はまだありません。</p>
-        </div>
+      <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
+  <% else %>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>投稿はまだありません。</p>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
