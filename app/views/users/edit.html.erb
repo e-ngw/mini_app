@@ -19,6 +19,12 @@
           <%= f.text_area :introduction, class: "form-control", rows: 4, placeholder: "自己紹介文を入力（200文字以内）" %>
         </div>
 
+        <!-- 公開/非公開設定 -->
+        <div class="form-group">
+          <%= f.label :is_public, "アカウントを公開する" %>
+          <%= f.check_box :is_public %>
+        </div>
+
         <!-- 保存ボタン -->
         <div class="text-end">
           <%= f.submit "保存", class: "btn btn-outline-dark" %>

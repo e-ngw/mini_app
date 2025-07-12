@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     # @posts = Post.includes(:tags, :user).order(created_at: :desc)
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:tags, :user).order(created_at: :desc)
+    @posts = @q.result(distinct: true).includes(:tags, :user).where(users: { is_public: true }).order(created_at: :desc)
   end
 
   def new
