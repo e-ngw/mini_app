@@ -36,7 +36,7 @@
     <!-- 検索フォーム（約40% = col-md-5） -->
     <div class="col-md-5 d-flex justify-content-end align-items-end">
       <div class="w-100 col-sm-12 col-md-6 col-lg-4">
-        <%= render partial: 'posts/search_form', locals: { q: @q, url: mypage_path } %>
+        <%= render partial: 'posts/search_form', locals: { q: @q, url: (@user == current_user ? mypage_path : user_path(@user)) } %>
       </div>
     </div>
   </div>
