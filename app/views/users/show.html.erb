@@ -6,7 +6,12 @@
     <div class="col-md-7">
       <div class="d-flex justify-content-between flex-wrap">
         <div>
-          <h2 class="fw-bold d-inline me-2"><%= @user.name %></h2>
+          <h2 class="fw-bold d-inline me-2">
+            <%= @user.name %>
+            <% unless @user.is_public? %>
+              <i class="bi bi-lock-fill text-muted small" title="非公開アカウント"></i>
+            <% end %>
+          </h2>
           <!-- プロフィール編集アイコン -->
           <% if @user == current_user %>
             <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
@@ -37,13 +42,21 @@
   </div>
 
   <!-- 投稿一覧（フィード） -->
-  <% if @posts.present? %>
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
-      <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
+  <% if @user == current_user || @user.is_public? %>
+    <% if @posts.present? %>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
+        <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
+    <% else %>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p>投稿はまだありません。</p>
+        </div>
+      </div>
+    <% end %>
   <% else %>
     <div class="row">
       <div class="col-12 text-center">
-        <p>投稿はまだありません。</p>
+        <p>このユーザーの投稿は非公開です。</p>
       </div>
     </div>
   <% end %>
