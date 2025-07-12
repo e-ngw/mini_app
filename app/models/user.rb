@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  validates :introduction, length: { maximum: 200 }
+
   def own?(object)
     id == object&.user_id
   end

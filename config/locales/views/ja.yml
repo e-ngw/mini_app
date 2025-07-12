@@ -27,11 +27,16 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+    edit:
+      title: プロフィール編集
   posts:
     new:
       title: ポスト作成
     edit:
       title: 編集
+  # profiles:
+  #   edit:
+  #     title: プロフィール編集
   header:
     login: ログイン
     logout: ログアウト

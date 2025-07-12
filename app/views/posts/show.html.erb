@@ -28,19 +28,36 @@
           </div>
         <% end %>
       </div>
+      <ul class="list-inline">
+        <li><i class="bi bi-person"></i>  <%= link_to @post.user.name, user_path(@post.user) %></li>
+        <li class="text-muted">
+          投稿日: <%= time_ago_in_words(@post.created_at) %>前
+          <% if @post.created_at != @post.updated_at %>
+            （<%= time_ago_in_words(@post.updated_at) %>前 更新）
+          <% end %>
+        </li>
+        <li>
+          <% @post.tags.each do |tag| %>
+            <span class="badge bg-secondary"><%= tag.name %></span>
+          <% end %>
+        </li>
+      </ul>
     </div>
 
     <!-- 右側：投稿内容 -->
     <div class="col-md-7">
+      <%#<p><strong>タイトル:</strong><br><%= simple_format(@post.title) %></p>
+      <hr class="my-3 border-top border-dark">
+
       <p><strong>本文:</strong><br><%= simple_format(@post.body) %></p>
+      <hr class="my-3 border-top border-dark">
+
       <p><strong>店舗情報:</strong><br><%= @post.restaurant_info %></p>
+      <hr class="my-3 border-top border-dark">
+
       <p><strong>フード情報:</strong><br><%= @post.food_info %></p>
-      <p><strong>タグ:</strong>
-      <% @post.tags.each do |tag| %>
-        <span class="badge bg-secondary"><%= tag.name %></span>
-      <% end %>
-      </p>
-      <p class="text-muted">投稿日: <%= l(@post.created_at, format: :long) %></p>
+      <hr class="my-3 border-top border-dark">
+
     </div>
   </div>
 
