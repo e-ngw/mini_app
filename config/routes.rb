@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "static_pages#top"
+
   devise_for :users # deviseを使用するURLに「users」を含むということ
 
   ### マイページ用
@@ -7,10 +9,17 @@ Rails.application.routes.draw do
   patch "/mypage", to: "users#update"
 
   ### 他人のプロフィールページ用
-  resources :users, only: [ :show ]
+  resources :users, only: [ :show ] do
+    # UserとFollowは関連づけられているためuserのidが必要。なのでfollowをネストする。
+    member do
+    get :followings  # /users/:id/followings
+    get :followers   # /users/:id/followers
+    end
+  end
 
   resources :posts, only: %i[ index new create show edit update destroy ]
-  root "static_pages#top"
+  resources :follows, only: %i[ create destroy ]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
