@@ -1,0 +1,18 @@
+<%# 「current_userがこの user をフォローしているか」確認し、該当するFollowレコードを取得 %>
+<% follow = current_user.active_follows.find_by(followed_id: user.id) %>
+
+<% if current_user != user %>
+  <div id="follow-button-<%= user.id %>">
+    <% if current_user.following?(user) %>
+      <%= button_to "フォロー解除", follow_path(follow),
+            method: :delete,
+            class: "btn btn-outline-danger",
+            form: { data: { turbo_stream: true } } %>
+    <% else %>
+      <%= button_to "フォロー", follows_path(followed_id: user.id),
+            method: :post,
+            class: "btn btn-primary",
+            form: { data: { turbo_stream: true } } %>
+    <% end %>
+  </div>
+<% end %>

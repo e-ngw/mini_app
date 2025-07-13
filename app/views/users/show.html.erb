@@ -4,19 +4,27 @@
   <div class="row mb-4 g-3 align-items-stretch">
     <!-- 自己紹介（約60% = col-md-7） -->
     <div class="col-md-7">
-      <div class="d-flex justify-content-between flex-wrap">
-        <div>
-          <h2 class="fw-bold d-inline me-2">
+      <div class="d-flex justify-content-between flex-wrap align-items-center">
+        <div class="d-flex align-items-center flex-wrap">
+          <h2 class="fw-bold d-inline me-2 mb-0">
             <%= @user.name %>
             <% unless @user.is_public? %>
               <i class="bi bi-lock-fill text-muted small" title="非公開アカウント"></i>
             <% end %>
           </h2>
-          <!-- プロフィール編集アイコン -->
+
           <% if @user == current_user %>
-            <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
-              <i class="bi bi-pencil-fill"></i>
-            <% end %>
+          <!-- プロフィール編集アイコン -->
+            <div class="ms-2">
+              <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
+                <i class="bi bi-pencil-fill"></i>
+              <% end %>
+            </div>
+          <% else %>
+          <!-- フォローボタン -->
+            <div class="ms-2">
+              <%= render 'follow_button', user: @user %>
+            </div>
           <% end %>
         </div>
       </div>
