@@ -29,9 +29,13 @@ ja:
       to_login_page: ログインページへ
     edit:
       title: プロフィール編集
+    show_follow_list:
+      title: フォローフォロワーリスト
   posts:
+    index:
+      title: 一覧
     new:
-      title: ポスト作成
+      title: 作成
     edit:
       title: 編集
   # profiles:
