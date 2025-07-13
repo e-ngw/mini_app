@@ -30,12 +30,12 @@
       </div>
 
       <div class="d-flex gap-3 my-2 small">
-      <div>
+      <div id="followings-count">
         <%= link_to followings_user_path(@user), class: "text-decoration-none text-dark" do %>
           <strong><%= @user.followings.count %></strong> フォロー中
         <% end %>
       </div>
-      <div>
+      <div id="followers-count">
         <%= link_to followers_user_path(@user), class: "text-decoration-none text-dark" do %>
           <strong><%= @user.followers.count %></strong> フォロワー
         <% end %>
