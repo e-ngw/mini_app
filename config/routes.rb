@@ -9,7 +9,13 @@ Rails.application.routes.draw do
   patch "/mypage", to: "users#update"
 
   ### 他人のプロフィールページ用
-  resources :users, only: [ :show ]
+  resources :users, only: [ :show ] do
+    # UserとFollowは関連づけられているためuserのidが必要。なのでfollowをネストする。
+    member do
+    get :followings  # /users/:id/followings
+    get :followers   # /users/:id/followers
+    end
+  end
 
   resources :posts, only: %i[ index new create show edit update destroy ]
   resources :follows, only: %i[ create destroy ]

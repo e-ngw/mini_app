@@ -30,8 +30,16 @@
       </div>
 
       <div class="d-flex gap-3 my-2 small">
-        <div><strong>フォロー</strong> 0</div>
-        <div><strong>フォロワー</strong> 0</div>
+      <div>
+        <%= link_to followings_user_path(@user), class: "text-decoration-none text-dark" do %>
+          <strong><%= @user.followings.count %></strong> フォロー中
+        <% end %>
+      </div>
+      <div>
+        <%= link_to followers_user_path(@user), class: "text-decoration-none text-dark" do %>
+          <strong><%= @user.followers.count %></strong> フォロワー
+        <% end %>
+      </div>
         <div><i class="bi bi-star"></i></div>
         <div><i class="bi bi-bookmark"></i></div>
       </div>
