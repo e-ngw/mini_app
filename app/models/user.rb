@@ -29,14 +29,14 @@ class User < ApplicationRecord
   end
 
   # フォローを解除
-  def unfollow(user)
-    active_follows.find_by(followed_id: user.id)&.destroy
+  def unfollow(other_user)
+    active_follows.find_by(followed_id: other_user.id)&.destroy
     # followings.delete(user)と同義
   end
 
-  # フォロー中かどうか判定（true,false）
-  def following?(user)
-    followings.include?(user)
+  # フォロー中か判定（フォロー中ならtrueを返す）
+  def following?(other_user)
+    followings.include?(other_user)
   end
 
   validates :introduction, length: { maximum: 200 }
