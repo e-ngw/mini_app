@@ -1,16 +1,55 @@
-<div class="top-wrapper">
+<%#<#div class="top-wrapper">
   <div class="top-inner-text">
     <h1>RUNTEQ BOARD APP</h1>
+  </div>
+</div>%>
 
-    <% if user_signed_in? %>
-  <div class="my-5">
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当にログアウトしますか？" }, class: "font-semibold py-2 px-4 rounded text-white bg-sky-600 hover:bg-sky-800 cursor-pointer" %>
-  </div>
-    <% else %>
-      <div class="my-5">
-        <%= link_to "新規登録", new_user_registration_path, class: "font-semibold py-2 px-4 rounded text-black bg-sky-600 hover:bg-sky-800 cursor-pointer" %>
-        <%= link_to "ログイン", new_user_session_path, class: "font-semibold py-2 px-4 rounded border-2 hover:bg-gray-100 px-3" %>
+<body>
+  <div class="container py-5">
+    <div class="text-center">
+      <%= image_tag("title_logo.png", alt: "KoreUma! logo", class: "logo-img") %>
+
+      <p class="lead">
+        「これうま！」と思った感動を <br />
+        そのまま写真とひとことで記録。
+      </p>
+      <div class="d-grid gap-3 col-10 col-sm-8 col-md-6 mx-auto mb-4">
+        <%= link_to t('static_pages.top.sign_up_button'), new_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to t('static_pages.top.sigh_in_button'), new_user_session_path, class: "btn btn-outline-primary" %>
       </div>
-    <% end %>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
+      <div class="col">
+        <div class="post-card">
+          <%= image_tag("sample_ice.jpg", alt: "アイス", class: "food-img mb-2") %>
+          <span class="badge bg-secondary mb-2">#アイス</span>
+          <p class="mb-0">濃厚でなめらか、また食べたい！</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="post-card">
+          <%= image_tag("sample_curry.jpg", alt: "カレー", class: "food-img mb-2") %>
+          <span class="badge bg-secondary mb-2">#カレー</span>
+          <p class="mb-0">小鉢なのがもったいないくらい美味しい</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="post-card">
+          <%= image_tag("sample_bread.jpg", alt: "パン", class: "food-img mb-2") %>
+          <span class="badge bg-secondary mb-2">#パン</span>
+          <span class="badge bg-secondary mb-2">#ベーグル</span>
+          <p class="mb-0">外カリッ中もちっのベーグルサンド</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="post-card">
+          <%= image_tag("sample_potato.jpg", alt: "ポテトチップス", class: "food-img mb-2") %>
+          <span class="badge bg-secondary mb-2">#コンビニ</span>
+          <span class="badge bg-secondary mb-2">#ポテトチップス</span>
+          <p class="mb-0">ポテトチップスの最推し</p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</body>
