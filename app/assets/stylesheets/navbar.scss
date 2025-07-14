@@ -1,0 +1,95 @@
+body {
+  margin-left: 0; /* デフォルトは0 */
+}
+
+body.with-sidebar {
+  margin-left: 60px; /* ログイン時のナビバー幅 */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 60px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  transition: width 0.3s;
+  z-index: 1030;
+  overflow-x: hidden;
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+.sidebar .account-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  width: 100%;
+}
+
+.sidebar .account-icon {
+  font-size: 1.8rem;
+  color: #555;
+}
+
+.sidebar .account-name {
+  display: none;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.sidebar:hover .account-name {
+  display: inline;
+}
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #333;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.sidebar .nav-link i {
+  font-size: 1.5rem;
+  margin-right: 0.2rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.sidebar .nav-link span {
+  display: none;
+}
+
+.sidebar:hover .nav-link span {
+  display: inline;
+}
+
+@media (max-width: 576px) {
+  body {
+    margin-left: 0;
+  }
+  .sidebar {
+    width: 0;
+  }
+  .sidebar.show {
+    width: 200px;
+  }
+  .sidebar-toggler {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1040;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+}

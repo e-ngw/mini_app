@@ -1,0 +1,33 @@
+<!-- Sidebar -->
+<div class="sidebar d-flex flex-column">
+  <!-- アカウント表示部分 -->
+  <div class="account-header d-flex flex-column align-items-center py-3">
+    <!-- アイコン（後で画像などに変更） -->
+    <i class="bi bi-person-circle account-icon"></i>
+    <%#<%= image_tag current_user.avatar_url, class: "account-icon rounded-circle" %>
+    <!-- アカウント名（hover時のみ表示） -->
+    <span class="account-name mt-1"><%= current_user.name %></span>
+  </div>
+
+  <!-- 各リンク -->
+  <%= link_to user_path(current_user), class: 'nav-link' do %>
+    <i class="bi bi-person"></i><span>マイページ</span>
+  <% end %>
+  <%= link_to posts_path, class: 'nav-link' do %>
+    <i class="bi bi-house"></i><span>フィード</span>
+  <% end %>
+  <%= link_to new_post_path, class: 'nav-link' do %>
+    <i class="bi bi-pencil-square"></i><span>投稿</span>
+  <% end %>
+  <%= button_to destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: 'nav-link' do %>
+    <i class="bi bi-box-arrow-right"></i><span>ログアウト</span>
+  <% end %>
+</div>
+
+<!-- Sidebar toggle for mobile -->
+<button
+  class="sidebar-toggler d-sm-none"
+  onclick="document.querySelector('.sidebar').classList.toggle('show')"
+>
+  ☰
+</button>

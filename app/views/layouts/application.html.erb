@@ -16,11 +16,10 @@
     />%>
   </head>
 
-  <body>
+  <body class="<%= user_signed_in? ? 'with-sidebar' : '' %>">
+    <%= render 'shared/header' %>
     <% if user_signed_in? %>
-      <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
+      <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flash_message' %>
     <%= yield %>
