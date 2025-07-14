@@ -1,22 +1,27 @@
 // TOP PAGEのレイアウトとデザインの鄭義
-.top-wrapper {
-  background-image: url('top.jpg');
-  height: calc(100vh - 134px);
-  position: relative;
-  background-position: center;
-
-  .top-inner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    text-align: center;
-    font-size: 3rem;
-    color: white;
-
-    @media screen and (max-width: 767px) {
-      font-size: 2rem;
-    }
-  }
+body {
+  background-color: #fffaf3;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+.logo-img {
+  width: 240px;
+  margin-bottom: 16px;
+}
+.food-img {
+  object-fit: cover;
+  height: 160px;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.post-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  height: 100%;
+}
+.btn-primary {
+  background-color: #007bff;
+  border: none;
 }

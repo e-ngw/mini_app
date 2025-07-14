@@ -17,6 +17,10 @@ ja:
     label:
       email: メールアドレス
       password: パスワード
+  static_pages:
+    top:
+      sign_up_button: 新規登録
+      sigh_in_button: ログイン
   user_sessions:
     new:
       title: ログイン
