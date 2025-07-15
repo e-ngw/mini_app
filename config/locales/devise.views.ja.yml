@@ -50,6 +50,7 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
         sign_up: "アカウント登録"
+        can_be_changed: "(マイページで変更可能)"
     sessions:
       new:
         sign_in: "ログイン"
