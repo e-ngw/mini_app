@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :introduction, length: { maximum: 200 }
+  validates :name, presence: true, length: { maximum: 30 }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -39,7 +42,6 @@ class User < ApplicationRecord
     followings.include?(other_user)
   end
 
-  validates :introduction, length: { maximum: 200 }
 
   def own?(object)
     id == object&.user_id
