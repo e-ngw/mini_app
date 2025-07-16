@@ -30,6 +30,7 @@ ja:
         instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
         message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
     passwords:
+      title: パスワード再設定
       edit:
         change_my_password: "パスワードを変更する"
         change_your_password: "パスワードを変更"
@@ -50,6 +51,7 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
       new:
         sign_up: "アカウント登録"
+        can_be_changed: "(マイページで変更可能)"
     sessions:
       new:
         sign_in: "ログイン"

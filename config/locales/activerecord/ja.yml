@@ -9,7 +9,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
-        name: "アカウント名（マイページで変更可能）"
+        name: アカウント名
         introduction: 自己紹介
       post:
         image: サムネイル
