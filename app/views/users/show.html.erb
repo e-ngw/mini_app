@@ -61,7 +61,7 @@
   <!-- 投稿一覧（フィード） -->
   <% if @user == current_user || @user.is_public? %>
     <% if @posts.present? %>
-      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
         <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
     <% else %>
       <div class="row">
