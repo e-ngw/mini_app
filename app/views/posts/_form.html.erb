@@ -2,8 +2,16 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="mb-3">
     <%= f.label :image %>
-    <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+    <%= f.file_field :image, class: "form-control", accept: 'image/*', id: 'post_image_input' %>
     <%= f.hidden_field :image_cache %>
+    <div class="mt-2">
+      <%= image_tag(@post.image? ? @post.image.url : '', id: 'image_preview', style: @post.image? ? "max-width: 300px;" : "display:none; max-width: 300px;") %>
+      <%#<% if @post.image? %>
+        <%#<%= image_tag @post.image.url, id: 'image_preview', style: "max-width: 300px;" %>
+      <%#<% else %>
+        <%#<%= image_tag '', id: 'image_preview', style: "display:none; max-width: 300px;" %>
+      <%#<% end %>
+    </div>
   </div>
   <div class="mb-3">
     <%= f.label :body %>
