@@ -1,16 +1,18 @@
 <%= form_with model: post, class: "new_post" do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="mb-3">
+
+  <div class="mb-3" data-controller="image-preview">
     <%= f.label :image %>
-    <%= f.file_field :image, class: "form-control", accept: 'image/*', id: 'post_image_input' %>
+    <%= f.file_field :image, class: "form-control", accept: 'image/*', data: { action: "change->image-preview#preview" } %>
     <%= f.hidden_field :image_cache %>
-    <div class="mt-2">
-      <%= image_tag(@post.image? ? @post.image.url : '', id: 'image_preview', style: @post.image? ? "max-width: 300px;" : "display:none; max-width: 300px;") %>
-      <%#<% if @post.image? %>
-        <%#<%= image_tag @post.image.url, id: 'image_preview', style: "max-width: 300px;" %>
-      <%#<% else %>
-        <%#<%= image_tag '', id: 'image_preview', style: "display:none; max-width: 300px;" %>
-      <%#<% end %>
+
+    <!-- プレビュー用のimgタグ -->
+    <div class="text-center mt-2">
+      <% if @post.image.present? %>
+        <img src="<%= @post.image.url %>" data-image-preview-target="preview" class="img-fluid" style="max-height: 300px;">
+      <% else %>
+        <img data-image-preview-target="preview" class="img-fluid d-none" style="max-height: 300px;">
+      <% end %>
     </div>
   </div>
   <div class="mb-3">
