@@ -12,7 +12,7 @@ ja:
         name: アカウント名
         introduction: 自己紹介
       post:
-        image: サムネイル
+        image: 画像
         body: 本文
         restaurant_info: 店舗情報
         food_info: メニュー/商品名
