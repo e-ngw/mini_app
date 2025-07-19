@@ -44,7 +44,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   process resize_to_limit: [ 1280, 1280 ]
 
   version :thumb do
-    process resize_to_fill: [ 250, 250 ]
+    process resize_to_fill: [ 360, 360 ]
   end
   # Process files as they are uploaded:
   # process scale: [200, 300]

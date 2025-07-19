@@ -7,16 +7,16 @@
     </div>
   </div>
 
-  <!-- 投稿グリッド一覧 -->
-    <% if @posts.present? %>
-      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
-        <%= render @posts %>
-    <% else %>
-      <div class="row">
-        <div class="col-12 text-center">
-          <p>投稿はまだありません。</p>
-        </div>
+  <% if @posts.present? %>
+    <!-- 投稿一覧：lg以上 3列、md〜lgも3列、sm未満は1列 -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <%= render @posts %>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>投稿はまだありません。</p>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
