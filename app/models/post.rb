@@ -1,8 +1,15 @@
 class Post < ApplicationRecord
-  validates :image, presence: { message: "：画像の選択は必須です" }
+  validates :image, presence: { message: "を選択してください" }
+  validates :title, presence: true, length: { maximum: 35 }
   validates :body, length: { maximum: 65_535 }
+  validate :body_cannot_include_forbidden_words
   validates :restaurant_info, length: { maximum: 255 }
   validates :food_info, length: { maximum: 255 }
+  # 画像の拡張子
+  validate :image_extension_validation
+
+  # imageカラムにUploaderをマウントする
+  mount_uploader :image, PostImageUploader
 
   belongs_to :user
   has_many :taggings, dependent: :destroy
@@ -53,11 +60,6 @@ class Post < ApplicationRecord
   くさい 臭い 変な味 腐ってる くさってる カビてる
 ]
 
-  validate :body_cannot_include_forbidden_words
-
-  # imageカラムにUploaderをマウントする
-  mount_uploader :image, PostImageUploader
-
   private
 
   def body_cannot_include_forbidden_words
@@ -68,6 +70,17 @@ class Post < ApplicationRecord
         errors.add(:body, ":「#{word}」を含む言葉は使用禁止です")
         break
       end
+    end
+  end
+
+  def image_extension_validation
+    # return unless image.present?
+
+    begin
+      # CarrierWaveの検証（拡張子チェック）を起動させる
+      image.cache! unless image.cached? # ここで拡張子NGの場合、CarrierWave::IntegrityError が発生
+    rescue CarrierWave::IntegrityError => e # CarrierWave::IntegrityErrorをキャッチし、i18nへ記述した文言に変換
+      errors.add(:image, :extension_whitelist_error, extension: File.extname(image.file.filename), allowed_types: image.extension_allowlist.join(", "))
     end
   end
 end

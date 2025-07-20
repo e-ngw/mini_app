@@ -1,5 +1,8 @@
 # モデルに関する日本語化
 ja:
+  errors:
+    messages:
+      extension_whitelist_error: "：%{extension}は許可されていない拡張子です。<%{allowed_types}>から選択してください"
   activerecord:
     models:
       user: ユーザー
@@ -13,7 +16,8 @@ ja:
         introduction: 自己紹介
       post:
         image: 画像
-        body: 本文
+        title: タイトル
+        body: 感想
         restaurant_info: 店舗情報
         food_info: メニュー/商品名
       tag:

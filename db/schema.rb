@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_16_013724) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_20_081443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_16_013724) do
     t.string "food_info"
     t.bigint "user_id"
     t.string "image"
+    t.string "title", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

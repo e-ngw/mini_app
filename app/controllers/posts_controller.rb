@@ -61,6 +61,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :image_cache, :body, :restaurant_info, :food_info)
+    params.require(:post).permit(:image, :title, :image_cache, :body, :restaurant_info, :food_info)
   end
 end
