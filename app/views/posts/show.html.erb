@@ -1,79 +1,94 @@
 <% content_for(:title, @post.food_info) %>
-<div class="container my-4">
-  <!-- 上段：投稿詳細 -->
-  <div class="row">
-    <!-- 左側：画像とアイコン -->
-    <div class="col-md-5 mb-4">
-      <%# 投稿画像 %>
-      <%= image_tag @post.image.url, class: "img-fluid rounded w-100" if @post.image? %>
 
-      <div class="d-flex justify-content-between mt-2">
-        <div>
-          <%# いいねアイコン %>
-          <i class="bi bi-star me-2"></i>
-          <%# ブックマークアイコン %>
-          <i class="bi bi-bookmark"></i>
+<div class="container px-3 px-md-5 my-4">
+  <div class="bg-white shadow rounded py-4 px-5">
+    <!-- タイトル -->
+    <h5 class="fw-bold mb-4"><%= @post.title %></h5>
+
+    <div class="row g-lg-5">
+      <!-- 左：画像＋アイコン -->
+      <div class="col-md-5">
+
+        <!-- 画像 -->
+        <% if @post.image? %>
+          <%= image_tag @post.image.url, class: "img-fluid rounded w-100", style: "aspect-ratio: 4 / 3; object-fit: cover;" %>
+        <% end %>
+
+        <!-- お気に入り・ブクマ＆編集削除 -->
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <div class="d-flex gap-2">
+            <i class="bi bi-star fs-5 text-warning" title="お気に入り"></i>
+            <i class="bi bi-bookmark fs-5 text-secondary" title="ブックマーク"></i>
+          </div>
+          <% if current_user.own?(@post) %>
+            <div class="d-flex gap-2">
+              <%= link_to edit_post_path(@post), class: "text-dark small" do %>
+                <i class="bi bi-pencil-fill fs-6"></i>
+              <% end %>
+              <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-dark small" do %>
+                <i class="bi bi-trash-fill fs-6"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 右：その他情報 -->
+      <div class="col-md-7">
+        <!-- アカウント名＆投稿日時 -->
+        <div class="d-flex align-items-center mb-3">
+          <!-- アカウント名（小さく＆アイコン付き） -->
+          <%= link_to user_path(@post.user), class: "d-flex align-items-center text-decoration-none" do %>
+            <i class="bi bi-person-fill fs-6 me-1" style="color: #b35900; aria-hidden="true"></i>
+            <small class="fw-bold" style="color: #b35900;"><%= @post.user.name %></small>
+          <% end %>
+          <!-- 日時 -->
+          <small class="text-muted ms-3">
+            <%= time_ago_in_words(@post.created_at) %>前
+            <% if @post.created_at != @post.updated_at %>
+              （<%= time_ago_in_words(@post.updated_at) %>前 更新）
+            <% end %>
+          </small>
         </div>
 
-        <% if current_user.own?(@post) %>
-          <div>
-            <%# 編集アイコン %>
-            <%= link_to edit_post_path(@post), class: "text-decoration-none me-3" do %>
-              <i class="bi bi-pencil-fill"></i>
-            <% end %>
+        <!-- 本文 -->
+        <div class="mb-4">
+          <%= simple_format(@post.body) %>
+        </div>
 
-            <%# 削除アイコン %>
-            <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-decoration-none" do %>
-              <i class="bi bi-trash-fill"></i>
+        <!-- タグ -->
+        <% if @post.tags.any? %>
+          <div class="mb-4 tag-scroll-wrapper">
+            <% @post.tags.each do |tag| %>
+              <span class="badge bg-secondary me-1 mb-1"><%= tag.name %></span>
             <% end %>
           </div>
         <% end %>
-      </div>
-      <ul class="list-inline">
-        <li><i class="bi bi-person"></i>  <%= link_to @post.user.name, user_path(@post.user) %></li>
-        <li class="text-muted small">
-          <%= time_ago_in_words(@post.created_at) %>前
-          <% if @post.created_at != @post.updated_at %>
-            (<%= time_ago_in_words(@post.updated_at) %>前 更新)
-          <% end %>
-        </li>
-        <li>
-          <% @post.tags.each do |tag| %>
-            <span class="badge bg-secondary"><%= tag.name %></span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
 
-    <!-- 右側：投稿内容 -->
-    <div class="col-md-7">
-      <%#<p><strong>タイトル:</strong><br><%= simple_format(@post.title) %></p>
-      <hr class="my-3 border-top border-dark">
-
-      <p><strong>本文:</strong><br><%= simple_format(@post.body) %></p>
-      <hr class="my-3 border-top border-dark">
-
-      <p><strong>店舗情報:</strong><br><%= @post.restaurant_info %></p>
-      <hr class="my-3 border-top border-dark">
-
-      <p><strong>フード情報:</strong><br><%= @post.food_info %></p>
-      <hr class="my-3 border-top border-dark">
-
-    </div>
-  </div>
-
-  <!-- 下段：コメント -->
-  <div class="row mt-5">
-    <div class="col">
-      <h5>コメント一覧</h5>
-      <ul class="list-unstyled">
-        <%#<% @post.comments.each do |comment| %>
-          <%#<li class="mb-2 border-bottom pb-2">
-            <strong><%= comment.user.name %><%#:</strong>
-            <%= comment.body %>
-          <%#</li>
+        <!-- 食べ物情報 -->
+        <% if @post.food_info.present? %>
+          <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-fork-knife fs-6 me-2"></i>
+            <!-- p.mb-0 で余計な上下マージンをリセット -->
+            <p class="mb-0 small text-muted"><%= @post.food_info %></p>
+          </div>
         <% end %>
-      </ul>
+
+        <!-- 店舗情報 -->
+        <% if @post.restaurant_info.present? %>
+          <div class="d-flex align-items-center mt-0 mb-4">
+            <i class="bi bi-geo-alt fs-6 me-2"></i>
+            <p class="mb-0 small text-muted"><%= @post.restaurant_info %></p>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <!-- 下段：コメント欄 -->
+    <div class="mt-5 border-top pt-4">
+      <h5>コメント</h5>
+      <p class="text-muted small">※ コメント機能は現在未実装です。</p>
     </div>
   </div>
 </div>
