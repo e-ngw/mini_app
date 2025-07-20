@@ -1,5 +1,8 @@
 # モデルに関する日本語化
 ja:
+  errors:
+    messages:
+      extension_whitelist_error: "：%{extension}は許可されていない拡張子です。<%{allowed_types}>から選択してください"
   activerecord:
     models:
       user: ユーザー
