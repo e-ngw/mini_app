@@ -1,8 +1,11 @@
 <div class="col mb-4">
   <div id="post-id-<%= post.id %>" class="card shadow-sm rounded-3 overflow-hidden">
 
-    <%= link_to post_path(post), class: "d-block position-relative ratio ratio-16x9" do %>
-      <%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-cover rounded" %>
+    <%= link_to post_path(post), class: "d-block" do %>
+      <%#<%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-cover rounded" %>
+      <div class="p-3">
+        <%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-fluid rounded" %>
+      </div>
     <% end %>
 
     <div class="card-body pt-0 pb-3 px-3">
