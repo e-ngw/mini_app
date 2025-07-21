@@ -32,7 +32,11 @@
   </div>
   <div class="mb-3">
     <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control", rows: "5" %>
+    <%= f.text_area :body, class: "form-control", rows: "3", placeholder: "一言コメント・この一品の魅力・感想など入力してください" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :tag_names, "タグ"%>
+    <%= f.text_field :tag_names, value: @tag_list, class: "form-control", placeholder: ",で区切って入力してください(例：和食,スイーツ,コンビニなど)" %>
   </div>
   <div class="mb-3">
     <%= f.label :restaurant_info %>
@@ -41,10 +45,6 @@
   <div class="mb-3">
     <%= f.label :food_info %>
     <%= f.text_field :food_info, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= f.label :tag_names, "タグ"%>
-    <%= f.text_field :tag_names, value: @tag_list, class: "form-control", placeholder: ",で区切って入力してください" %>
   </div>
   <%# ここのnilは新規や更新などアクションに適した文字を生成してくれる %>
   <%= f.submit nil, class: "btn btn-primary" %>

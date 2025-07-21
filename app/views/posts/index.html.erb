@@ -1,22 +1,21 @@
 <% content_for(:title, t('.title')) %>
 <div class="container pt-3">
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-lg-10 offset-lg-1">
       <!-- 検索フォーム -->
       <%= render 'search_form', q: @q, url: posts_path %>
     </div>
   </div>
 
-  <% if @posts.present? %>
-    <!-- 投稿一覧：lg以上 3列、md〜lgも3列、sm未満は1列 -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <%= render @posts %>
-    </div>
-  <% else %>
-    <div class="row">
-      <div class="col-12 text-center">
+  <!-- 投稿一覧 -->
+    <% if @posts.present? %>
+      <div class="post-grid">
+        <%= render @posts %>
+      </div>
+    <% else %>
+      <div class="text-center">
         <p>投稿はまだありません。</p>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
