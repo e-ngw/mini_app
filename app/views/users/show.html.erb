@@ -1,80 +1,74 @@
 <% content_for(:title, @user.name) %>
 <div class="container py-4">
 
-  <!-- ユーザープロフィールと検索 -->
-  <div class="row mb-4 g-3 align-items-stretch">
-    <!-- 自己紹介（約60% = col-md-7） -->
-    <div class="col-md-7">
-      <div class="d-flex justify-content-between flex-wrap align-items-center">
-        <div class="d-flex align-items-center flex-wrap">
-          <h2 class="fw-bold d-inline me-2 mb-0">
-            <%= @user.name %>
-            <% unless @user.is_public? %>
-              <i class="bi bi-lock-fill text-muted small" title="非公開アカウント"></i>
-            <% end %>
-          </h2>
-
-          <% if @user == current_user %>
-          <!-- プロフィール編集アイコン -->
-            <div class="ms-2">
-              <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
-                <i class="bi bi-pencil-fill"></i>
-              <% end %>
-            </div>
-          <% else %>
-          <!-- フォローボタン -->
-            <div class="ms-2">
-              <%= render 'follow_button', user: @user %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="d-flex gap-3 my-2 small">
-      <div id="followings-count">
-        <%= link_to followings_user_path(@user), class: "text-decoration-none text-dark" do %>
-          <strong><%= @user.followings.count %></strong> フォロー中
-        <% end %>
-      </div>
-      <div id="followers-count">
-        <%= link_to followers_user_path(@user), class: "text-decoration-none text-dark" do %>
-          <strong><%= @user.followers.count %></strong> フォロワー
-        <% end %>
-      </div>
-        <div><i class="bi bi-star"></i></div>
-        <div><i class="bi bi-bookmark"></i></div>
-      </div>
-
-      <div class="form-control bg-light border-0 rounded p-3" readonly style="min-height: 80px;">
-        <%= @user.introduction.presence || '自己紹介文はまだありません。' %>
-      </div>
-    </div>
-
-    <!-- 検索フォーム（約40% = col-md-5） -->
-    <div class="col-md-5 d-flex justify-content-end align-items-end">
-      <div class="w-100 col-sm-12 col-md-6 col-lg-4">
-        <%= render partial: 'posts/search_form', locals: { q: @q, url: (@user == current_user ? mypage_path : user_path(@user)) } %>
-      </div>
-    </div>
-  </div>
-
-  <!-- 投稿一覧（フィード） -->
-  <% if @user == current_user || @user.is_public? %>
-    <% if @posts.present? %>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
-    <% else %>
-      <div class="row">
-        <div class="col-12 text-center">
-          <p>投稿はまだありません。</p>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
+  <!-- 共通幅に揃える枠（左寄せ） -->
+  <div class="mx-auto mb-3" style="max-width: 1000px;">
+    <!-- ユーザープロフィール -->
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-lg-12">
+        <div class="d-flex justify-content-between flex-wrap align-items-center mb-2">
+          <div class="d-flex align-items-center flex-wrap">
+            <h2 class="fw-bold d-inline me-2 mb-0">
+              <%= @user.name %>
+              <% unless @user.is_public? %>
+                <i class="bi bi-lock-fill text-muted small" title="非公開アカウント"></i>
+              <% end %>
+            </h2>
+
+            <% if @user == current_user %>
+            <!-- プロフィール編集アイコン -->
+              <div class="ms-2">
+                <%= link_to edit_mypage_path, class: 'text-muted', title: 'プロフィール編集' do %>
+                  <i class="bi bi-pencil-fill"></i>
+                <% end %>
+              </div>
+            <% else %>
+            <!-- フォローボタン -->
+              <div class="ms-2">
+                <%= render 'follow_button', user: @user %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 my-2 small">
+          <div id="followings-count">
+            <%= link_to followings_user_path(@user), class: "text-decoration-none text-dark" do %>
+              <strong><%= @user.followings.count %></strong> フォロー中
+            <% end %>
+          </div>
+          <div id="followers-count">
+            <%= link_to followers_user_path(@user), class: "text-decoration-none text-dark" do %>
+              <strong><%= @user.followers.count %></strong> フォロワー
+            <% end %>
+          </div>
+          <div><i class="bi bi-star"></i></div>
+          <div><i class="bi bi-bookmark"></i></div>
+        </div>
+
+        <div class="form-control bg-light border-0 rounded p-3 mb-4" readonly style="min-height: 80px;">
+          <%= @user.introduction.presence || '自己紹介文はまだありません。' %>
+        </div>
+      </div>
+    </div>
+
+    <%= render partial: 'posts/search_form', locals: { q: @q, url: (@user == current_user ? mypage_path : user_path(@user)) } %>
+
+    <!-- 投稿一覧（フィード） -->
+    <% if @user == current_user || @user.is_public? %>
+      <% if @posts.present? %>
+        <div class="post-grid">
+          <%= render partial: "posts/post_mypage", collection: @posts, as: :post %>
+      <% else %>
+        <div class="text-center">
+            <p>投稿はまだありません。</p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
         <p>このユーザーの投稿は非公開です。</p>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
