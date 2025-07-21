@@ -11,7 +11,7 @@
 
         <!-- 画像 -->
         <% if @post.image? %>
-          <%= image_tag @post.image.url, class: "img-fluid rounded w-100", style: "aspect-ratio: 4 / 3; object-fit: cover;" %>
+          <%= image_tag @post.image.url(:medium), class: "img-fluid rounded w-100" %>
         <% end %>
 
         <!-- お気に入り・ブクマ＆編集削除 -->

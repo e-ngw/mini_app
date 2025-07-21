@@ -17,7 +17,7 @@ ja:
       post:
         image: 画像
         title: タイトル
-        body: 感想
+        body: 本文
         restaurant_info: 店舗情報
         food_info: メニュー/商品名
       tag:

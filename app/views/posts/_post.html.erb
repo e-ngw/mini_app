@@ -1,11 +1,13 @@
 <div class="col mb-4">
-  <div id="post-id-<%= post.id %>" class="card shadow-sm rounded-3 overflow-hidden">
+  <div id="post-id-<%= post.id %>" class="card shadow-sm rounded-3 overflow-hidden card-fixed mx-auto">
 
-    <%= link_to post_path(post), class: "d-block position-relative ratio ratio-16x9" do %>
-      <%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-cover rounded" %>
+    <%= link_to post_path(post), class: "d-block p-3 pt-3 pb-0" do %>
+      <div class="image-wrapper">
+        <%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-fluid image-rounded" %>
+      </div>
     <% end %>
 
-    <div class="card-body pt-0 pb-3 px-3">
+    <div class="card-body pt-3 pb-3 px-3">
 
       <!-- お気に入り・ブクマ & 編集・削除アイコン -->
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -57,7 +59,6 @@
           <%= link_to post.user.name, user_path(post.user), class: "text-muted text-decoration-none small" %>
         </small>
       </div>
-
     </div>
   </div>
 </div>
