@@ -11,8 +11,10 @@
 import { application } from "./application"
 
 import HelloController from "./hello_controller"
-import ImagePreviewController from "./image_preview_controller"  // ここを追加
-
 application.register("hello", HelloController)
-application.register("image-preview", ImagePreviewController)   // ここを追加
 
+import ImagePreviewController from "./image_preview_controller"
+application.register("image-preview", ImagePreviewController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)
