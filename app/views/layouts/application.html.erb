@@ -23,6 +23,11 @@
     <% end %>
     <%= render 'shared/flash_message' %>
     <%= yield %>
+    <div id="back"  data-controller="scroll">
+      <a href="#" data-action="click->scroll#scrollToTop">
+        <%= image_tag "scroll-up.png", alt: "トップへ戻るアイコン", data: { turbo: false }, class: "arrow" %>
+      </a>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>
