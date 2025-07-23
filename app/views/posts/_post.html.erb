@@ -39,7 +39,7 @@
       <% if post.tags.any? %>
         <div class="tag-scroll-wrapper mb-2">
           <% post.tags.each do |tag| %>
-            <span class="badge bg-secondary me-1"><%= tag.name %></span>
+            <%= link_to "##{tag.name}", posts_path(q: { tags_name_cont: tag.name }), class: "hashtag" %>
           <% end %>
         </div>
       <% end %>

@@ -78,6 +78,23 @@ body {
   border-radius: 2px;
 }
 
+.hashtag {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  background-color: #f0f2f5;
+  color: #1da1f2;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.hashtag:hover {
+  background-color: #e1ecf4;
+}
+
 // トップへのリターンicon
 #back {
   position: fixed;
