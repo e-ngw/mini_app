@@ -4,18 +4,19 @@ body {
 
 body.with-sidebar {
   margin-left: 60px; /* ログイン時のナビバー幅 */
+  padding-top: 64px; // headerの高さ
 }
 
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 64; // =headerの高さ分 下へずらす
   left: 0;
-  height: 100vh;
+  height: calc(100vh - 64px); // headerの高さ分引く
   width: 60px;
-  background-color: #fff;
-  border-right: 1px solid #ddd;
+  background-color: #faebdd; // ベージュ寄りの明るい色
+  border-right: 1px solid #e0c4a3; // 優しい境界線
   transition: width 0.3s;
-  z-index: 1030;
+  z-index: 1040; // z-indexの値がheaderより小さいのでheader優先となる
   overflow-x: hidden;
 }
 
@@ -37,24 +38,44 @@ body.with-sidebar {
 }
 
 .sidebar .account-name {
-  display: none;
+  opacity: 0; // 要素を透明にして表示スペースは確保しているが非表示のように見せる
   font-weight: bold;
   color: #333;
   white-space: nowrap;
   margin-left: 0.5rem;
+  transition: opacity 0.3s; //フェードインアウトの秒速
+  // height: 1.2rem; // 固定しておくとより安定
 }
 
 .sidebar:hover .account-name {
-  display: inline;
+  opacity: 1; // hover時に表示
 }
 
 .sidebar .nav-link {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
-  color: #333;
+  color: #3a2c20;
   white-space: nowrap;
   text-align: left;
+  border-radius: 0; /* ホバー時に丸みをつけるため初期は0に */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link:focus {
+  background-color: #f3d7bc; // ホバー時にほんのり濃く
+  color: #bf5320; // ロゴのアクセントカラー
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.sidebar .nav-link.active {
+  background-color: #eacbaa;
+  color: #bf5320;
+  font-weight: bold;
+  border-left: 3px solid #bf5320;
+  border-radius: 8px;
 }
 
 .sidebar .nav-link i {

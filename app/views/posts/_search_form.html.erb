@@ -4,7 +4,7 @@
     <div class="search-form d-flex flex-wrap gap-2">
       <div class="flex-grow-1">
         <%= f.label :tags_name_cont, "タグ名で検索", class: "form-label" %>
-        <%= f.search_field :tags_name_cont, class: "form-control", placeholder: "例: 中華" %>
+        <%= f.search_field :tags_name_cont, value: params.dig(:q, :tags_name_cont), class: "form-control", placeholder: "例: 中華" %>
       </div>
       <div class="align-self-end">
         <%= f.submit "検索", class: "btn btn-outline-primary" %>

@@ -10,13 +10,13 @@
   </div>
 
   <!-- 各リンク -->
-  <%= link_to mypage_path, class: 'nav-link' do %>
+  <%= link_to mypage_path, class: "nav-link #{current_page?(mypage_path) ? 'active' : ''}" do %>
     <i class="bi bi-person"></i><span>マイページ</span>
   <% end %>
-  <%= link_to posts_path, class: 'nav-link' do %>
+  <%= link_to posts_path, class: "nav-link #{current_page?(posts_path) ? 'active' : ''}" do %>
     <i class="bi bi-house"></i><span>フィード</span>
   <% end %>
-  <%= link_to new_post_path, class: 'nav-link' do %>
+  <%= link_to new_post_path, class: "nav-link #{current_page?(new_post_path) ? 'active' : ''}" do %>
     <i class="bi bi-pencil-square"></i><span>投稿</span>
   <% end %>
   <%= button_to destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: 'nav-link' do %>
