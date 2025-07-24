@@ -50,15 +50,15 @@ body {
   height: 100%;
 }
 
-// 画像と枠の間にスペース＞削除よてい
-.img-cover {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-  padding: 8px; // または margin: 4px;
-  box-sizing: border-box; // paddingを含めてサイズ制御
-}
+// // 画像と枠の間にスペース＞削除よてい
+// .img-cover {
+//   object-fit: cover;
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 0.5rem;
+//   padding: 8px; // または margin: 4px;
+//   box-sizing: border-box; // paddingを含めてサイズ制御
+// }
 
 // tag
 // タグの横スクロール対応
