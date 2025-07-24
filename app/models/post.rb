@@ -1,8 +1,14 @@
 class Post < ApplicationRecord
+  belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+  attr_accessor :tag_names
+
   validates :image, presence: { message: "を選択してください" }
-  validates :title, presence: true, length: { maximum: 35 }
-  validates :body, length: { maximum: 65_535 }
-  validate :body_cannot_include_forbidden_words
+  validates :title, presence: true, length: { maximum: 35 }, forbidden_word: true
+  validates :body, length: { maximum: 65_535 }, forbidden_word: true
+  validates :tag_names, forbidden_word: true
   validates :restaurant_info, length: { maximum: 255 }
   validates :food_info, length: { maximum: 255 }
   # 画像の拡張子
@@ -10,12 +16,6 @@ class Post < ApplicationRecord
 
   # imageカラムにUploaderをマウントする
   mount_uploader :image, PostImageUploader
-
-  belongs_to :user
-  has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
-
-  attr_accessor :tag_names
 
   ### タグ検索関連
   # Postモデルのカラムで検索許可するもの
@@ -53,25 +53,7 @@ class Post < ApplicationRecord
     end
   end
 
-  ### 投稿のbodyバリデーション
-  FORBIDDEN_WORDS = %w[
-  まずい まずっ 不味 マズい マズイ まずすぎる 美味しくない おいしくない 食えない 食べられない もう食べたくない
-  最悪 ひどい 酷すぎ 失敗 不快 だめ 期待外れ 残念 がっかり ひどすぎ
-  くさい 臭い 変な味 腐ってる くさってる カビてる
-]
-
   private
-
-  def body_cannot_include_forbidden_words
-    return if body.blank?
-
-    FORBIDDEN_WORDS.each do |word|
-      if body.include?(word)
-        errors.add(:body, ":「#{word}」を含む言葉は使用禁止です")
-        break
-      end
-    end
-  end
 
   def image_extension_validation
     # return unless image.present?

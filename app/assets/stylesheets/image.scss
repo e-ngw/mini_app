@@ -1,8 +1,7 @@
 #image_preview {
-  max-width: 300px;
-  max-height: 300px;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto;  /* 中央よせ */
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
 }

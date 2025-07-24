@@ -18,6 +18,7 @@ ja:
         image: 画像
         title: タイトル
         body: 本文
+        tag_names: タグ
         restaurant_info: 店舗情報
         food_info: メニュー/商品名
       tag:
