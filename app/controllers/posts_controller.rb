@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     tag_list = params[:post][:tag_names].split(",") # フォームから送られたタグを,で区切った単語で配列を作っている
+    @post.tag_names = tag_list.join(",") # Postインスタンスへ仮想属性tag_namesに値を代入し、バリデーション対象にする処理。
+    # save_tagsメソッドだけでは post.tags << add_tag によってタグを紐付けているだけで、バリデーション対象になっていない。
 
     if @post.save
       @post.save_tags(tag_list) # 上記で定義したtag_list
@@ -37,6 +39,8 @@ class PostsController < ApplicationController
   def update
     @post = current_user.posts.find(params[:id])
     tag_list = params[:post][:tag_names].split(",") # 入力されたタグを受け取る
+    @post.tag_names = tag_list.join(",")
+
     if @post.update(post_params)
       @post.save_tags(tag_list)
       redirect_to post_path(@post), notice: t("defaults.flash_message.updated", item: Post.model_name.human)
