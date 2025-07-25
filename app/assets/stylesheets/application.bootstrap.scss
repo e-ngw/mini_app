@@ -12,6 +12,7 @@ body {
   line-height: 1.6;
   font-weight: 400;
   color: #333;
+  padding-top: 64px;
 }
 
 h1, h2, h3, h4 {
@@ -130,4 +131,15 @@ h1, h2, h3, h4 {
 .arrow{
   width: 48px;
   height: 48px;
+}
+
+// devise link
+a.devise-link,
+a.devise-link:visited {
+  color: #e35a1c; // ここを好きな色に
+  text-decoration: underline;
+}
+a.devise-link:hover {
+  color: #bf4410;
+  text-decoration: none;
 }
