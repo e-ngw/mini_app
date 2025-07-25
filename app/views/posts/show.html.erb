@@ -3,7 +3,7 @@
 <div class="container px-3 px-md-5 my-4">
   <div class="bg-white shadow rounded py-4 px-5">
     <!-- タイトル -->
-    <h5 class="fw-bold mb-4"><%= @post.title %></h5>
+    <h4 class="fw-bold mt-2 mb-4"><%= @post.title %></h4>
 
     <div class="row g-lg-5">
       <!-- 左：画像＋アイコン -->
@@ -11,33 +11,18 @@
 
         <!-- 画像 -->
         <% if @post.image? %>
-          <%= image_tag @post.image.url(:medium), class: "img-fluid rounded w-100" %>
+          <%= image_tag @post.image.url(:medium), class: "img-fluid rounded w-100 mb-2" %>
         <% end %>
 
         <!-- お気に入り・ブクマ＆編集削除 -->
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <div class="d-flex gap-2">
-            <i class="bi bi-star fs-5 text-warning" title="お気に入り"></i>
-            <i class="bi bi-bookmark fs-5 text-secondary" title="ブックマーク"></i>
-          </div>
-          <% if current_user.own?(@post) %>
-            <div class="d-flex gap-2">
-              <%= link_to edit_post_path(@post), class: "text-dark small" do %>
-                <i class="bi bi-pencil-fill fs-6"></i>
-              <% end %>
-              <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') }, class: "text-dark small" do %>
-                <i class="bi bi-trash-fill fs-6"></i>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+        <%= render 'shared/post_actions', post: @post %>
       </div>
 
       <!-- 右：その他情報 -->
       <div class="col-md-7">
         <!-- アカウント名＆投稿日時 -->
         <div class="d-flex align-items-center mb-3">
-          <!-- アカウント名（小さく＆アイコン付き） -->
+          <!-- アカウント名 -->
           <%= link_to user_path(@post.user), class: "d-flex align-items-center text-decoration-none" do %>
             <i class="bi bi-person-fill fs-6 me-1" style="color: #b35900; aria-hidden="true"></i>
             <small class="fw-bold" style="color: #b35900;"><%= @post.user.name %></small>
@@ -51,36 +36,40 @@
           </small>
         </div>
 
-        <!-- 本文 -->
-        <div class="mb-4">
-          <%= simple_format(@post.body) %>
-        </div>
+        <div class="ms-1">
+          <!-- 本文 -->
+          <div class="mb-4">
+            <%= @post.body %>
+          </div>
 
-        <!-- タグ -->
-        <% if @post.tags.any? %>
-          <div class="mb-4 tag-scroll-wrapper">
-            <% @post.tags.each do |tag| %>
-            <%= link_to "##{tag.name}", posts_path(q: { tags_name_cont: tag.name }), class: "hashtag" %>
+          <!-- タグ --> <%# 共通化できそう %>
+          <% if @post.tags.any? %>
+            <div class="mb-3 tag-scroll-wrapper">
+              <% @post.tags.each do |tag| %>
+              <%= link_to "##{tag.name}", posts_path(q: { tags_name_cont: tag.name }), class: "hashtag" %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="ms-1">
+            <!-- 食べ物情報 -->
+            <% if @post.food_info.present? %>
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-fork-knife fs-6 me-2"></i>
+                <!-- p.mb-0 で余計な上下マージンをリセット -->
+                <p class="mb-0 small text-muted"><%= @post.food_info %></p>
+              </div>
+            <% end %>
+
+            <!-- 店舗情報 -->
+            <% if @post.restaurant_info.present? %>
+              <div class="d-flex align-items-center mt-0 mb-2">
+                <i class="bi bi-geo-alt fs-6 me-2"></i>
+                <p class="mb-0 small text-muted"><%= @post.restaurant_info %></p>
+              </div>
             <% end %>
           </div>
-        <% end %>
-
-        <!-- 食べ物情報 -->
-        <% if @post.food_info.present? %>
-          <div class="d-flex align-items-center mb-2">
-            <i class="bi bi-fork-knife fs-6 me-2"></i>
-            <!-- p.mb-0 で余計な上下マージンをリセット -->
-            <p class="mb-0 small text-muted"><%= @post.food_info %></p>
-          </div>
-        <% end %>
-
-        <!-- 店舗情報 -->
-        <% if @post.restaurant_info.present? %>
-          <div class="d-flex align-items-center mt-0 mb-4">
-            <i class="bi bi-geo-alt fs-6 me-2"></i>
-            <p class="mb-0 small text-muted"><%= @post.restaurant_info %></p>
-          </div>
-        <% end %>
+        </div>
 
       </div>
     </div>
