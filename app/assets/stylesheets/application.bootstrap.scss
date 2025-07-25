@@ -8,6 +8,42 @@
 body {
   background-color: #fffaf3;
   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #333;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: #3a2c20; // サイドバーと統一感のある色
+}
+
+.btn-primary {
+  background-color: #bf5320; // サイドバーのホバー色と同系
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #a4441a;
+}
+
+.btn-outline-primary {
+  color: #bf5320;
+  border: 1px solid #bf5320;
+  background-color: transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-outline-primary:hover {
+  background-color: #bf5320;
+  color: #fff;
+  border-color: #bf5320;
+}
+
+.text-muted {
+  color: #777;
 }
 
 // index
@@ -50,16 +86,6 @@ body {
   height: 100%;
 }
 
-// // 画像と枠の間にスペース＞削除よてい
-// .img-cover {
-//   object-fit: cover;
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 0.5rem;
-//   padding: 8px; // または margin: 4px;
-//   box-sizing: border-box; // paddingを含めてサイズ制御
-// }
-
 // tag
 // タグの横スクロール対応
 .tag-scroll-wrapper {
@@ -86,7 +112,7 @@ body {
   font-weight: 500;
   border-radius: 9999px;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   transition: background-color 0.2s;
   white-space: nowrap;
 }
