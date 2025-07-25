@@ -1,41 +1,8 @@
-<div class="col mb-4">
-  <div id="post-id-<%= post.id %>" class="card shadow-sm rounded-3 overflow-hidden card-fixed mx-auto">
-
-    <%= link_to post_path(post), class: "d-block p-3 pt-3 pb-0" do %>
-      <div class="image-wrapper">
-        <%= image_tag post.image.url(:thumb), alt: "投稿画像", class: "img-fluid image-rounded" %>
-      </div>
+<%= render 'shared/post_card', post: post do %>
+  <%# タグの部分だけ %>
+  <div class="tag-scroll-wrapper mb-2">
+    <% post.tags.each do |tag| %>
+      <%= link_to "##{tag.name}", @user == current_user ? mypage_path(q: { tags_name_cont: tag.name }) : user_path(@user, q: { tags_name_cont: tag.name }), class: "hashtag" %>
     <% end %>
-
-    <div class="card-body pt-2 pb-3 px-3">
-
-      <!-- お気に入り・ブクマ & 編集・削除アイコン -->
-      <%= render 'shared/post_actions', post: post %>
-
-      <!-- タイトル -->
-      <p class="card-text small fw-bold text-truncate mb-2" style="max-height: 2.5em; overflow: hidden;">
-        <%= truncate(post.title, length: 15, omission: "...") %>
-      </p>
-
-      <!-- タグ -->
-      <% if post.tags.any? %>
-        <div class="tag-scroll-wrapper mb-2">
-          <% post.tags.each do |tag| %>
-            <%= link_to "##{tag.name}", @user == current_user ? mypage_path(q: { tags_name_cont: tag.name }) : user_path(@user, q: { tags_name_cont: tag.name }), class: "hashtag" %>
-          <% end %>
-        </div>
-      <% end %>
-
-      <!-- 投稿日・ユーザー名 -->
-      <div class="d-flex justify-content-between align-items-center mt-2">
-        <small class="text-muted">
-          <%= time_ago_in_words(post.created_at) %>前
-        </small>
-        <small class="text-muted">
-          <i class="bi bi-person me-1"></i>
-          <%= link_to post.user.name, user_path(post.user), class: "text-muted text-decoration-none small" %>
-        </small>
-      </div>
-    </div>
   </div>
-</div>
+<% end %>
