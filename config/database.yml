@@ -16,6 +16,6 @@ test:
 
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # DATABASE_URL は、接続情報（ユーザー名、パスワード、ホスト、ポート、DB名など）を 1つのURLでまとめて指定できる便利な方法。
+  # url: キーがあると、それを優先して使ってくれる
