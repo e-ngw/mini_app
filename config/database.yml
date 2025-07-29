@@ -17,6 +17,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  sslmode: require #NeonへDB移行のため追記
+  # sslmode: require #NeonへDB移行のため追記
   # DATABASE_URL は、接続情報（ユーザー名、パスワード、ホスト、ポート、DB名など）を 1つのURLでまとめて指定できる便利な方法。
   # url: キーがあると、それを優先して使ってくれる
