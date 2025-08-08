@@ -93,7 +93,7 @@ GEM
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
@@ -142,7 +142,7 @@ GEM
     drb (2.2.3)
     erb (5.0.1)
     erubi (1.13.1)
-    excon (1.2.7)
+    excon (1.2.8)
       logger
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
@@ -154,8 +154,8 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
-    fog-aws (3.32.0)
-      base64 (~> 0.2.0)
+    fog-aws (3.33.0)
+      base64 (>= 0.2, < 0.4)
       fog-core (~> 2.6)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
@@ -170,7 +170,7 @@ GEM
     fog-xml (0.1.5)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    formatador (1.1.0)
+    formatador (1.1.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -206,12 +206,12 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0708)
+    mime-types-data (3.2025.0805)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
-    multi_json (1.15.0)
+    multi_json (1.17.0)
     net-imap (0.5.9)
       date
       net-protocol
@@ -222,21 +222,21 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.8-aarch64-linux-gnu)
+    nokogiri (1.18.9-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-aarch64-linux-musl)
+    nokogiri (1.18.9-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-gnu)
+    nokogiri (1.18.9-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-musl)
+    nokogiri (1.18.9-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm64-darwin)
+    nokogiri (1.18.9-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-darwin)
+    nokogiri (1.18.9-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-gnu)
+    nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-musl)
+    nokogiri (1.18.9-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.27.0)
@@ -412,7 +412,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   faker
-  fog-aws (~> 3.24)
+  fog-aws (~> 3.33)
   jbuilder
   jsbundling-rails
   mini_magick (~> 4.13)
