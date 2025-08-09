@@ -1,21 +1,19 @@
-<tr id="comment-<%= comment.id %>">
-  <td style="width: 60px">
+<tr id="comment-<%= comment.id %>" class="align-middle comment-row">
+  <%#<td style="width: 60px">
     <%= image_tag "sample", width: "50", height: "50", class: "rounded-circle" %>
-  </td>
+  <%#</td>%>
   <td>
-    <h3 class="small"><%= comment.user.name %></h3>
-    <p><%= simple_format(comment.body) %></p>
+    <%= link_to user_path(@post.user), class: "d-flex align-items-center text-decoration-none" do %>
+      <i class="bi bi-person-fill fs-6 me-1" style="color: #b35900; aria-hidden="true"></i>
+      <small class="fw-bold" style="color: #b35900;"><%= @post.user.name %></small>
+    <% end %>
+    <p class="mb-0"><%= simple_format(comment.body) %></p>
   </td>
   <% if current_user.own?(comment) %>
-    <td class="action">
-      <ul class="list-inline justify-content-center" style="float: right;">
-        <%#<li class="list-inline-item">
-          <%= link_to "#", class: "edit-comment-link" do %>
-            <%#<i class="bi bi-pencil-fill"></i>
-          <% end %>
-        <%#</li>%>
+    <td class="text-end">
+      <ul class="list-inline mb-0">
         <li class="list-inline-item">
-          <%= link_to comment_path(comment), class: "delete-comment-link text-muted",  data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
+          <%= link_to comment_path(comment), class: "delete-comment-link text-muted", data: { turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm') } do %>
             <i class="bi bi-trash-fill"></i>
           <% end %>
         </li>

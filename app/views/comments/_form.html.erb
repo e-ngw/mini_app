@@ -1,10 +1,14 @@
-<div class="row mb-3" id="comment-form">
-  <div class="col-lg-8 offset-lg-2">
-    <%= form_with model: comment, url: post_comments_path(post) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :body %>
-      <%= f.text_area :body, class: "form-control mb-3", row: "3", placeholder: Comment.human_attribute_name(:body) %>
-      <%= f.submit "コメント", class: "btn btn-primary" %>
+<div id="comment-form" class="mb-3">
+  <div class="comment-form-card p-3 shadow-sm rounded">
+    <%= form_with model: comment, url: post_comments_path(post), class: "d-flex flex-wrap gap-2 align-items-end" do |f| %>
+      <div class="flex-grow-1">
+        <%= render 'shared/error_messages', object: f.object %>
+        <%#<%= f.label :body, class: "form-label" %>
+        <%= f.text_area :body, class: "form-control", rows: 3, placeholder: "#{Comment.human_attribute_name(:body)}を入力" %>
+      </div>
+      <div>
+        <%= f.submit "コメント", class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>

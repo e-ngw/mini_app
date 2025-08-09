@@ -1,0 +1,33 @@
+// コメント全体の横幅制限と中央寄せ
+.comment-container {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+// フォームデザイン
+.comment-form-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+// レスポンシブル対応：フォームは縦並びでボタン下に
+@media (max-width: 576px) {
+  #comment-form form {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  #comment-form form > div {
+    width: 100% !important;
+  }
+}
+
+// コメント行のスタイル
+.comment-row td {
+  vertical-align: top;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

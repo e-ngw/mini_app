@@ -76,17 +76,17 @@
 
     <!-- 下段：コメント欄 -->
     <div class="mt-5 border-top pt-3">
-      <%= render 'comments/form', comment: @comment, post: @post %>
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-          <table class="table">
+      <div class="comment-container mx-auto px-3 px-md-0">
+        <%= render 'comments/form', comment: @comment, post: @post %>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
             <tbody id="table-comment">
               <%= render @comments %>
             </tbody>
           </table>
         </div>
       </div>
-      <p class="text-muted small">※ コメント機能は現在未実装です。</p>
     </div>
   </div>
 </div>
