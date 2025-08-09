@@ -3,9 +3,9 @@
     <%= image_tag "sample", width: "50", height: "50", class: "rounded-circle" %>
   <%#</td>%>
   <td>
-    <%= link_to user_path(@post.user), class: "d-flex align-items-center text-decoration-none" do %>
+    <%= link_to user_path(comment.user), class: "d-flex align-items-center text-decoration-none" do %>
       <i class="bi bi-person-fill fs-6 me-1" style="color: #b35900; aria-hidden="true"></i>
-      <small class="fw-bold" style="color: #b35900;"><%= @post.user.name %></small>
+      <small class="fw-bold" style="color: #b35900;"><%= comment.user.name %></small>
     <% end %>
     <p class="mb-0"><%= simple_format(comment.body) %></p>
   </td>
