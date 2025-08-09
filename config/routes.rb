@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: %i[ index new create show edit update destroy ] do
-    resources :comments, only: %i[ create edit destroy ], shallow: true
+    resources :comments, only: %i[ create destroy ], shallow: true
   end
   resources :follows, only: %i[ create destroy ]
 
