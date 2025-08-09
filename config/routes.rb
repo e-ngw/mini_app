@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: %i[ index new create show edit update destroy ]
+  resources :posts, only: %i[ index new create show edit update destroy ] do
+    resources :comments, only: %i[ create edit destroy ], shallow: true
+  end
   resources :follows, only: %i[ create destroy ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

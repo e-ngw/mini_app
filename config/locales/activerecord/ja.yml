@@ -23,3 +23,5 @@ ja:
         food_info: メニュー/商品名
       tag:
         tag: タグ
+      comment:
+        body: コメント
