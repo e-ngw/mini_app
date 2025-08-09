@@ -39,7 +39,7 @@
         <div class="ms-1">
           <!-- 本文 -->
           <div class="mb-4">
-            <%= @post.body %>
+            <%= simple_format(@post.body) %>
           </div>
 
           <!-- タグ --> <%# 共通化できそう %>
@@ -75,9 +75,18 @@
     </div>
 
     <!-- 下段：コメント欄 -->
-    <div class="mt-5 border-top pt-4">
-      <h5>コメント</h5>
-      <p class="text-muted small">※ コメント機能は現在未実装です。</p>
+    <div class="mt-5 border-top pt-3">
+      <div class="comment-container mx-auto px-3 px-md-0">
+        <%= render 'comments/form', comment: @comment, post: @post %>
+
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <tbody id="table-comment">
+              <%= render @comments %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

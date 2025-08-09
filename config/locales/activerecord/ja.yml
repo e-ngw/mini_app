@@ -3,10 +3,11 @@ ja:
   errors:
     messages:
       extension_whitelist_error: "：%{extension}は許可されていない拡張子です。<%{allowed_types}>から選択してください"
-  activerecord:
+  activerecord: # flashメッセージのmodel name
     models:
       user: ユーザー
       post: ポスト
+      comment: コメント
     attributes: # errorメッセージのカラム
       user:
         email: メールアドレス
@@ -23,3 +24,5 @@ ja:
         food_info: メニュー/商品名
       tag:
         tag: タグ
+      comment:
+        body: コメント

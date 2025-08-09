@@ -30,6 +30,8 @@
 !/tmp/storage/.keep
 
 /public/assets
+# 追記
+/public/uploads
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
