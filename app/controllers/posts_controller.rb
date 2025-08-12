@@ -64,6 +64,10 @@ class PostsController < ApplicationController
     # リダイレクト時に使われる。POSTのあとのGETリクエストに変換して、他のページへ遷移させたいときに便利
   end
 
+  def likes
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   def post_params

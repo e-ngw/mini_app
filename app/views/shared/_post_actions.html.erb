@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-between align-items-center mb-2">
   <!-- お気に入り・ブクマ -->
   <div class="d-flex gap-2">
-    <i class="bi bi-star fs-5 text-warning" title="お気に入り"></i>
+    <%= render 'posts/like_buttons', { post: post } %>
     <i class="bi bi-bookmark fs-5 text-secondary" title="ブックマーク"></i>
   </div>
 
