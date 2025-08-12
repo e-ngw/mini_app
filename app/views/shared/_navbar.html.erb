@@ -22,6 +22,9 @@
   <%= link_to likes_posts_path, class: "nav-link #{current_page?(likes_posts_path) ? 'active' : ''}" do %>
     <i class="bi bi-star"></i><span>お気に入り一覧</span>
   <% end %>
+  <%= link_to bookmarks_posts_path, class: "nav-link #{current_page?(bookmarks_posts_path) ? 'active' : ''}" do %>
+    <i class="bi bi-bookmark"></i><span>ブックマーク一覧</span>
+  <% end %>
   <%= button_to destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: 'nav-link' do %>
     <i class="bi bi-box-arrow-right"></i><span>ログアウト</span>
   <% end %>

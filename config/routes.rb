@@ -21,10 +21,12 @@ Rails.application.routes.draw do
     resources :comments, only: %i[ create destroy ], shallow: true
     collection do
       get :likes
+      get :bookmarks
     end
   end
   resources :follows, only: %i[ create destroy ]
   resources :likes, only: %i[ create destroy ]
+  resources :bookmarks, only: %i[ create destroy ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -66,4 +66,18 @@ class User < ApplicationRecord
   def like?(post)
     like_posts.include?(post)
   end
+
+
+  ## bookmarkに関するインスタンスメソッド
+  def bookmark(post)
+    bookmark_posts << post
+  end
+
+  def unbookmark(post)
+    bookmark_posts.destroy(post)
+  end
+
+  def bookmark?(post)
+    bookmark_posts.include?(post)
+  end
 end
