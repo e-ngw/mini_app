@@ -1,0 +1,8 @@
+<%# Stimulus AutocompleteがHTMLをそのまま posts/_search_formの <ul> に挿入してリスト表示してくれる %>
+<% @tags.each do |tag| %>
+  <li class="list-group-item"
+      role="option"
+      data-autocomplete-label="<%= tag.name %>"> <%# ユーザーが候補をクリックしたときに、入力欄に入れる値を指定 %>
+    <%= tag.name %>
+  </li>
+<% end %>

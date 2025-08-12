@@ -72,6 +72,11 @@ class PostsController < ApplicationController
     @bookmark_posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
   end
 
+  def autocomplete
+    @tags = Tag.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+    render layout: false # posts/autocompleteビューは候補表示だけの部分的なビューでレイアウト（application.html.erbなど）不要のため
+  end
+
   private
 
   def post_params
