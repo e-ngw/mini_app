@@ -2,9 +2,21 @@
 
   <%= search_form_for q, url: url, method: :get, class: "mb-4" do |f| %>
     <div class="search-form d-flex flex-wrap gap-2">
-      <div class="flex-grow-1">
+      <div class="flex-grow-1 position-relative"
+           data-controller="autocomplete"
+           data-autocomplete-url-value="<%= autocomplete_posts_path %>"
+           role="combobox"
+      >
         <%= f.label :tags_name_cont, "タグ名で検索", class: "form-label" %>
-        <%= f.search_field :tags_name_cont, value: params.dig(:q, :tags_name_cont), class: "form-control", placeholder: "例: 中華" %>
+        <%= f.search_field :tags_name_cont,
+              value: params.dig(:q, :tags_name_cont),
+              class: "form-control",
+              placeholder: "例: 中華",
+              data: { autocomplete_target: "input" } %>
+
+        <ul class="list-group position-absolute w-100"
+            style="z-index: 1000; top: 100%;"
+            data-autocomplete-target="results"></ul>
       </div>
       <div class="align-self-end">
         <%= f.submit "検索", class: "btn btn-outline-primary" %>

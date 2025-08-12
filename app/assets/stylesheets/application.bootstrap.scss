@@ -144,3 +144,9 @@ a.devise-link:hover {
   color: #bf4410;
   text-decoration: none;
 }
+
+// 検索の候補表示関連
+.list-group-item:hover {
+  background-color: #f0f8ff; /* 薄い水色 */
+  cursor: pointer; /* マウスカーソルを指マークに */
+}

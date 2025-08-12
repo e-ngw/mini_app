@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     collection do
       get :likes
       get :bookmarks
+      get :autocomplete
     end
   end
   resources :follows, only: %i[ create destroy ]
