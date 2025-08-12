@@ -45,11 +45,6 @@ ja:
     likes:
       title: お気に入り一覧
       no_result: お気に入り中のポストはありません
-  likes:
-    create:
-      success: ブックマークしました
-    destroy:
-      success: ブックマークを外しました
   header:
     login: ログイン
     logout: ログアウト
