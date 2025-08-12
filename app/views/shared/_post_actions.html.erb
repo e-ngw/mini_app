@@ -3,7 +3,7 @@
   <!-- お気に入り・ブクマ -->
   <div class="d-flex gap-2">
     <%= render 'posts/like_buttons', { post: post } %>
-    <i class="bi bi-bookmark fs-5 text-secondary" title="ブックマーク"></i>
+    <%= render 'posts/bookmark_buttons', { post: post } %>
   </div>
 
   <!-- 編集・削除（自投稿のみ表示） -->
