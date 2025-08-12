@@ -44,7 +44,10 @@ ja:
       title: 編集
     likes:
       title: お気に入り一覧
-      no_result: お気に入り中のポストはありません
+      no_result: お気に入りしているポストはありません。
+    bookmarks:
+      title: ブックマーク一覧
+      no_result: ブックマークしているポストはありません
   header:
     login: ログイン
     logout: ログアウト
