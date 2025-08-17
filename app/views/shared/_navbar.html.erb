@@ -25,6 +25,17 @@
   <%= link_to bookmarks_posts_path, class: "nav-link #{current_page?(bookmarks_posts_path) ? 'active' : ''}" do %>
     <i class="bi bi-bookmark"></i><span>ブックマーク一覧</span>
   <% end %>
+  <%= link_to notifications_index_path, class: "nav-link #{current_page?(notifications_index_path) ? 'active' : ''}" do %>
+    <span class="icon-wrapper position-relative">
+      <i class="bi bi-bell"></i>
+      <% if current_user.notifications.unread.any? %>
+        <span class="unread-badge">
+          <%= current_user.notifications.unread.count %>
+        </span>
+      <% end %>
+    </span>
+    <span class="link-text">通知</span>
+  <% end %>
   <%= button_to destroy_user_session_path, method: :delete, form: { "data-turbo" => "false", class: "d-inline" }, class: 'nav-link' do %>
     <i class="bi bi-box-arrow-right"></i><span>ログアウト</span>
   <% end %>
