@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "notifications/index"
   root "static_pages#top"
 
   devise_for :users # deviseを使用するURLに「users」を含むということ
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
   resources :follows, only: %i[ create destroy ]
   resources :likes, only: %i[ create destroy ]
   resources :bookmarks, only: %i[ create destroy ]
+  resources :notification, only: %i[ index ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
