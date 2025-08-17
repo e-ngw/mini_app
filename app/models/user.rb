@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :like_posts, through: :likes, source: :post
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy # 自分が受け取った通知
 
 
   ### follower_id= フォローしている人、followed_id= フォローされている人 ###
