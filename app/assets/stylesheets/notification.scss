@@ -1,0 +1,26 @@
+/* 通知全体ホバー */
+.notification-item {
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #faebdd; /* 薄いオレンジ */
+}
+
+/* アバターアイコン拡大 */
+.notification-item .avator a i.bi-person-circle {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.notification-item .avator a:hover i.bi-person-circle {
+  transform: scale(1.3);
+}
+
+/* 通知一覧のコメント本文のスタイル */
+.notification-comment {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+}

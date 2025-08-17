@@ -1,0 +1,56 @@
+<div id="notification-<%= notification.id %>"
+      class="notification-item d-flex align-items-start border-bottom <%= notification_unread_class(notification) %>">
+  <!-- 左端: actorアイコン -->
+  <div class="avator ps-2">
+    <%= link_to user_path(notification.actor), class: "d-block" do %>
+      <%#<% if notification.actor.avatar.attached? %>
+        <%#<%= image_tag notification.actor.avatar.variant(resize_to_fill: [40,40]),
+                      class: "rounded-circle" %>
+      <%#<% else %>
+      <i class="bi bi-person-circle fs-2 text-secondary"></i>
+      <%#<% end %>
+    <% end %>
+  </div>
+
+  <!-- 中央: アカウント名 + 文言 + 時間 + コメント本文 -->
+  <div class="flex-grow-1">
+    <%# リンク先＋CSS分岐（d-flex or d-block） %>
+    <% flex_class = ["Like", "Comment"].include?(notification.notifiable_type) ? "d-flex justify-content-between w-100" : "d-block w-100" %>
+    <%= link_to notification_link(notification), class: "p-2 text-decoration-none text-dark #{flex_class}" do %>
+
+      <div class="flex-grow-1">
+        <!-- 1行目: アカウント名 + アクション文言 + 時間 -->
+        <div class="mb-1 small">
+          <%= notification.actor.name %>
+          <span class="ms-1"><%= notification_text(notification) %></span>
+          <small class="text-muted ms-2"><%= time_ago_in_words(notification.created_at) %>前</small>
+        </div>
+
+        <!-- 2行目: コメント本文（Commentのみ） -->
+        <% if notification.notifiable_type == "Comment" %>
+          <div class="notification-comment d-flex align-items-start text-muted">
+            <!-- 左側: アイコン -->
+            <div class="me-2 flex-shrink-0">
+              <i class="bi bi-chat-fill"></i>
+            </div>
+
+            <!-- 右側: コメント本文（40文字までにtruncate） -->
+            <div class="flex-grow-1">
+              <%= truncate(notification.notifiable.body, length: 60, omission: "…＜続きを読む＞") %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- 右端: 投稿サムネイル（Like/Commentのみ） -->
+      <% if ["Like", "Comment"].include?(notification.notifiable_type) %>
+        <div class="ms-2 flex-shrink-0">
+          <%= image_tag notification.notifiable.post.image.url(:thumb),
+                        class: "rounded",
+                        size: "48x48" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

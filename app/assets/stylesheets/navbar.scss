@@ -27,9 +27,7 @@ body.with-sidebar {
 .sidebar .account-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   padding: 1rem;
-  width: 100%;
 }
 
 .sidebar .account-icon {
@@ -44,7 +42,6 @@ body.with-sidebar {
   white-space: nowrap;
   margin-left: 0.5rem;
   transition: opacity 0.3s; //フェードインアウトの秒速
-  // height: 1.2rem; // 固定しておくとより安定
 }
 
 .sidebar:hover .account-name {
@@ -60,8 +57,11 @@ body.with-sidebar {
   text-align: left;
   border-radius: 0; /* ホバー時に丸みをつけるため初期は0に */
   transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  line-height: 1.5; /* 高さ安定化 */
 }
 
+/* ホバー時のリンク背景 */
 .sidebar .nav-link:hover,
 .sidebar .nav-link:focus {
   background-color: #f3d7bc; // ホバー時にほんのり濃く
@@ -76,6 +76,28 @@ body.with-sidebar {
   font-weight: bold;
   border-left: 3px solid #bf5320;
   border-radius: 8px;
+}
+
+/* アイコンラッパー */
+.sidebar .nav-link .icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* バッジ */
+.sidebar .nav-link .unread-badge {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%); /* アイコン右上に配置 */
+  font-size: 0.6rem;
+  padding: 0.25em 0.4em;
+  border-radius: 50%;
+  background-color: #ff5900;
+  color: #fff;
+  z-index: 10;
+  line-height: 1;
 }
 
 .sidebar .nav-link i {

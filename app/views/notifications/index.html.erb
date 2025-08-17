@@ -1,0 +1,14 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <%= render @notifications %>
+
+      <%# ページ描画後に未読をまとめて既読にする %>
+      <% current_user.notifications.unread.update_all(read: true) %>
+
+    </div>
+  </div>
+</div>
