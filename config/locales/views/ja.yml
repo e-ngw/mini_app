@@ -48,6 +48,9 @@ ja:
     bookmarks:
       title: ブックマーク一覧
       no_result: ブックマークしているポストはありません
+  notifications:
+    index:
+      title: 通知一覧
   header:
     login: ログイン
     logout: ログアウト
